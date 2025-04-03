@@ -1,5 +1,5 @@
 """
-An internal module containing various utilities like constant lists or data loading functions.
+An internal module containing various utilities like constants or data loading functions.
 """
 import os
 import fastf1
@@ -13,14 +13,21 @@ def load_csv_data(directory: str) -> dict[pd.DataFrame]:
     for filename in os.listdir(directory):
         if filename.lower().startswith("formula"):
             with open(f"{directory}/{filename}", encoding='utf-8') as f:
-                key = filename.split("_")[-1][:-4]
+                flavor_data = filename.split("_")
+                key = flavor_data[-1][:-4]
                 if not isinstance(sessions.get(key), pd.DataFrame):
                     sessions[key] = pd.DataFrame()
-                sessions[key] = pd.concat([sessions[key], pd.read_csv(f)], axis=0)
+                this_years_dataframe = pd.read_csv(f)
+                this_years_dataframe['Year'] = flavor_data[-2].removesuffix('season')
+                sessions[key] = pd.concat([sessions[key], this_years_dataframe], axis=0)
     return sessions
 
-years = [2019, 2020, 2021, 2022, 2023, 2024]
+# via official documentation:
+# session name abbreviation: 'FP1', 'FP2', 'FP3', 'Q', 'S', 'SS', 'SQ', 'R'
+# full session name: 'Practice 1', 'Practice 2', 'Practice 3', 'Sprint', 'Sprint Shootout', 'Sprint Qualifying', 'Qualifying', 'Race'; provided names will be normalized, so that the name is case-insensitive
+# number of the session: 1, 2, 3, 4, 5
 races = ['FP1', 'FP2', 'FP3', 'Qualifying', 'Race']
+years = [2019, 2020, 2021, 2022, 2023, 2024]
 def load_fastf1_data() -> dict:
     """
     Load data of all F1 rounds since 2019, basing on the FastF1 module.
