@@ -11,7 +11,8 @@ verstappen = drivers.loc[drivers['Abbreviation'] == 'VER']
 print(verstappen)
 
 # Load fastf1 data
-fastf1_session_list = utils.load_fastf1_data()
-session = fastf1_session_list[-1]
+fastf1_sessions = utils.load_fastf1_data()
+session = fastf1_sessions['Race'][2]
+print("\n\n", session, "\n\n")
 session.load()
-print(session.laps['LapTime'].describe())
+print(session.get_driver('HAM'))

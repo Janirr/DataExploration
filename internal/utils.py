@@ -32,17 +32,20 @@ def load_fastf1_data() -> dict:
     """
     Load data of all F1 rounds since 2019, basing on the FastF1 module.
     """
-    session_list = []
+    sessions = {x: [] for x in races}
     for year in years:
         break_flag = 0
         for i in range(1, 100):
             for race in races:
                 try:
-                    session_list.append(fastf1.get_session(year, i, race))
+                    session = fastf1.get_session(year, i, race)
+                    sessions[race].append(session)
                 except ValueError:
-                    # print(f"{year} had {i} rounds.")
                     break_flag = 1
                     break
             if break_flag == 1:
                 break
-    return session_list
+    return sessions
+
+if __name__ == "__main__":
+    print("This module is not meant to be used on its own.")
