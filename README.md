@@ -10,3 +10,9 @@ Temat projektu: Przewidywanie wyników i rankingu kierowców w wyścigu na podst
    - Charakterystyka toru (średnia prędkość, liczba wolnych zakrętów, klasyfikacje bolidów z poprzednich lat)
    - Marka silnika
    - Top speed z FP1/FP2/FP3/QUALI
+
+Metody do klasyfikacji:
+- **Spearman correlation coefficient**
+- Normalized discounted cumulative gain (NDCG)
+- Mean reciprocal rank (MRR)
+- Sieci neuronowe / problem regresji
