@@ -5,6 +5,12 @@ import os
 import fastf1
 import pandas as pd
 
+# Set pandas display options to show all columns and rows
+pd.set_option('display.max_columns', None)  # Show all columns
+pd.set_option('display.max_rows', None)  # Show all rows (be cautious with large datasets)
+pd.set_option('display.width', None)  # Adjust to the screen width
+
+
 def load_csv_data(directory: str) -> dict[pd.DataFrame]:
     """
     Load all F1-related .csv files from a given path.
