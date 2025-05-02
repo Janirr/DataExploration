@@ -24,18 +24,18 @@ print(session, "\n")
 weather_data = session.weather_data
 weather_data = weather_data.reset_index(drop=True)
 # Drop any rows with NaN in relevant columns to avoid skewing averages
-weather_data_clean = weather_data[['AirTemp', 'TrackTemp', 'Rainfall', 'WindSpeed']].dropna()
+weather_df = weather_data[['AirTemp', 'TrackTemp', 'Rainfall', 'WindSpeed']].dropna()
 
 # Compute averages
-average_air_temp = weather_data_clean['AirTemp'].mean()
-average_track_temp = weather_data_clean['TrackTemp'].mean()
-average_wind_speed_temp = weather_data_clean['WindSpeed'].mean()
+average_air_temp = weather_df['AirTemp'].mean()
+average_track_temp = weather_df['TrackTemp'].mean()
+average_wind_speed_temp = weather_df['WindSpeed'].mean()
 
 # For rainfall, you can compute:
 # - Fraction of time it rained (boolean True treated as 1, False as 0)
 # - Or count of rainy intervals
-rainfall_fraction = weather_data_clean['Rainfall'].mean()  # Between 0 and 1
-rainfall_count = weather_data_clean['Rainfall'].sum()      # Total number of rainy intervals
+rainfall_fraction = weather_df['Rainfall'].mean()  # Between 0 and 1
+rainfall_count = weather_df['Rainfall'].sum()      # Total number of rainy intervals
 
 print("=========== Weather Data ===========")
 print(f"Average Wind Speed: {average_wind_speed_temp:.2f} m/s")
@@ -61,14 +61,14 @@ laps = session.laps
 laps = laps.reset_index(drop=True)
 
 
-laps_clean = laps[['Time', 'Driver', 'SpeedI1', 'SpeedI2', 'SpeedFL', 'SpeedST']].dropna()
+laps_clean = laps[['Time', 'Driver', 'SpeedI1', 'SpeedI2', 'Speeresults_dfL', 'SpeedST']].dropna()
 # Calculate average speed trap for each driver
 average_speed = laps_clean.groupby('Driver').mean().reset_index()
-average_speed['AverageSpeed'] = average_speed[['SpeedI1', 'SpeedI2', 'SpeedFL', 'SpeedST']].mean(axis=1)
+average_speed['AverageSpeed'] = average_speed[['SpeedI1', 'SpeedI2', 'Speeresults_dfL', 'SpeedST']].mean(axis=1)
 # Sort by AverageSpeed in descending order
-average_speed_sorted = average_speed.sort_values(by='AverageSpeed', ascending=False).reset_index(drop=True)
+speed_df = average_speed.sort_values(by='AverageSpeed', ascending=False).reset_index(drop=True)
 print("=========== Top speeds ===========")
-print("Average Speed Trap for each driver (sorted):\n", average_speed_sorted,"\n")
+print("Average Speed Trap for each driver (sorted):\n", speed_df,"\n")
 
 # Results
 """
@@ -97,19 +97,19 @@ Points | float | The number of points received by each driver for their finishin
 results = session.results[['DriverNumber', 'Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Time', 'Status', 'Points']]
 
 # Copy the results data
-df = results.copy()
+results_df = results.copy()
 
 # Ensure that Time is timedelta type
-df['Time'] = pd.to_timedelta(df['Time'], errors='coerce')
+results_df['Time'] = pd.to_timedelta(results_df['Time'], errors='coerce')
 
 # Leader
-leader_row = df[df['ClassifiedPosition'] == '1'].iloc[0]
+leader_row = results_df[results_df['ClassifiedPosition'] == '1'].iloc[0]
 leader_time = leader_row['Time']
 
 # Number of laps completed by the leader
 laps_completed = session.laps[session.laps['Driver'] == leader_row['Abbreviation']].shape[0]
 
-# Average lap time of the leader
+# Średni czas okrążenia lidera
 avg_lap_time = leader_time / laps_completed
 avg_lap_time_ms = avg_lap_time.total_seconds() * 1000
 
@@ -140,17 +140,14 @@ def normalize_time(row):
         return avg_lap_time_ms * float(grid) / 5
 
 # Apply normalization
-df['GapToLeaderMs'] = df.apply(normalize_time, axis=1)
+results_df['GapToLeaderMs'] = results_df.apply(normalize_time, axis=1)
 
 # Sort by final position
-df = df.sort_values(by='GapToLeaderMs')
+results_df = results_df.sort_values(by='GapToLeaderMs')
 
 # Display final results
 print("=========== Results ===========")
-print(df[['Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Status', 'Points', 'GapToLeaderMs']],"\n")
-
-# TODO: Combine df and average_speed_sorted to get the average speed for each driver in the final results
-
+print(results_df[['Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Status', 'Points', 'GapToLeaderMs']],"\n")
 
 # Circuit Info - number of corners, length, etc.
 circuit_info = session.get_circuit_info()
@@ -165,3 +162,5 @@ circuit_info_filtered = corners_df[['Angle', 'Distance']]
 print("=========== Track data (corners) ===========")
 print(circuit_info_filtered)
 print(f"Number of corners: {circuit_info_filtered.shape[0]}")
+
+# TODO: Combine all data frames and repeat it for all sessions
