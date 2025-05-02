@@ -5,37 +5,14 @@ import numpy as np
 # Load fastf1 data
 fastf1_sessions = utils.load_fastf1_data()
 session = fastf1_sessions['Race'][0] #2nd race from 2022-2025
-print("\n\n", session, "\n\n")
 session.load(weather=True, laps=True, telemetry=True)
 
-# Laps - Top speed
-"""
-Time (pandas.Timedelta): Session time at which the lap was set (i.e. finished)
-LapTime (pandas.Timedelta): Lap time of the last finished lap (the lap in this row)
-Driver (str): Driver number
-NumberOfLaps (int): Number of laps driven by this driver including the lap in this row
-NumberOfPitStops (int): Number of pit stops of this driver
-PitInTime (pandas.Timedelta): Session time at which the driver entered the pits. Consequently, if this value is not NaT the lap in this row is an inlap.
-PitOutTime (pandas.Timedelta): Session time at which the driver exited the pits. Consequently, if this value is not NaT, the lap in this row is an outlap.
-Sector1/2/3Time (pandas.Timedelta): Sector times (one column for each sector time)
-Sector1/2/3SessionTime (pandas.Timedelta): Session time at which the corresponding sector time was set (one column for each sector’s session time)
-SpeedI1/I2/FL/ST: Speed trap speeds; FL is speed at the finish line; I1 and I2 are speed traps in sector 1 and 2 respectively; ST maybe a speed trap on the longest straight (?)
-"""
-laps = session.laps
-laps = laps.reset_index(drop=True)
-
-
-laps_clean = laps[['Time', 'Driver', 'SpeedI1', 'SpeedI2', 'SpeedFL', 'SpeedST']].dropna()
-# Calculate average speed trap for each driver
-average_speed = laps_clean.groupby('Driver').mean().reset_index()
-average_speed['AverageSpeed'] = average_speed[['SpeedI1', 'SpeedI2', 'SpeedFL', 'SpeedST']].mean(axis=1)
-# Sort by AverageSpeed in descending order
-average_speed_sorted = average_speed.sort_values(by='AverageSpeed', ascending=False).reset_index(drop=True)
-print("\nAverage Speed Trap for each driver (sorted):\n", average_speed_sorted)
+print("=========== Session ===========")
+print(session, "\n")
 
 # Weather
 """
-#Time (datetime.timedelta): session timestamp (time only)
+# Time (datetime.timedelta): session timestamp (time only)
 # AirTemp (float): Air temperature [°C]
 # Humidity (float): Relative humidity [%]
 # Pressure (float): Air pressure [mbar]
@@ -60,10 +37,38 @@ average_wind_speed_temp = weather_data_clean['WindSpeed'].mean()
 rainfall_fraction = weather_data_clean['Rainfall'].mean()  # Between 0 and 1
 rainfall_count = weather_data_clean['Rainfall'].sum()      # Total number of rainy intervals
 
+print("=========== Weather Data ===========")
 print(f"Average Wind Speed: {average_wind_speed_temp:.2f} m/s")
 print(f"Average Air Temperature: {average_air_temp:.2f} °C")
 print(f"Average Track Temperature: {average_track_temp:.2f} °C")
-print(f"Rainfall occurred in {rainfall_fraction*100:.1f}% of intervals ({int(rainfall_count)} times)")
+print(f"Rainfall occurred in {rainfall_fraction*100:.1f}% of intervals ({int(rainfall_count)} times)\n")
+
+
+# Laps - Top speed
+"""
+Time (pandas.Timedelta): Session time at which the lap was set (i.e. finished)
+LapTime (pandas.Timedelta): Lap time of the last finished lap (the lap in this row)
+Driver (str): Driver number
+NumberOfLaps (int): Number of laps driven by this driver including the lap in this row
+NumberOfPitStops (int): Number of pit stops of this driver
+PitInTime (pandas.Timedelta): Session time at which the driver entered the pits. Consequently, if this value is not NaT the lap in this row is an inlap.
+PitOutTime (pandas.Timedelta): Session time at which the driver exited the pits. Consequently, if this value is not NaT, the lap in this row is an outlap.
+Sector1/2/3Time (pandas.Timedelta): Sector times (one column for each sector time)
+Sector1/2/3SessionTime (pandas.Timedelta): Session time at which the corresponding sector time was set (one column for each sector’s session time)
+SpeedI1/I2/FL/ST: Speed trap speeds; FL is speed at the finish line; I1 and I2 are speed traps in sector 1 and 2 respectively; ST maybe a speed trap on the longest straight (?)
+"""
+laps = session.laps
+laps = laps.reset_index(drop=True)
+
+
+laps_clean = laps[['Time', 'Driver', 'SpeedI1', 'SpeedI2', 'SpeedFL', 'SpeedST']].dropna()
+# Calculate average speed trap for each driver
+average_speed = laps_clean.groupby('Driver').mean().reset_index()
+average_speed['AverageSpeed'] = average_speed[['SpeedI1', 'SpeedI2', 'SpeedFL', 'SpeedST']].mean(axis=1)
+# Sort by AverageSpeed in descending order
+average_speed_sorted = average_speed.sort_values(by='AverageSpeed', ascending=False).reset_index(drop=True)
+print("=========== Top speeds ===========")
+print("Average Speed Trap for each driver (sorted):\n", average_speed_sorted,"\n")
 
 # Results
 """
@@ -89,40 +94,40 @@ Time | pd.Timedelta | The drivers total race time
 Status | str | A status message to indicate if and how the driver finished the race or to indicate the cause of a DNF. Possible values include but are not limited to Finished, + 1 Lap, Crash, Gearbox
 Points | float | The number of points received by each driver for their finishing result.
 """
-results = session.results[['Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Time', 'Status', 'Points']]
+results = session.results[['DriverNumber', 'Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Time', 'Status', 'Points']]
 
-# Skopiuj dane wyników
+# Copy the results data
 df = results.copy()
 
-# Upewnij się, że Time jest typu timedelta
+# Ensure that Time is timedelta type
 df['Time'] = pd.to_timedelta(df['Time'], errors='coerce')
 
-# Lider
+# Leader
 leader_row = df[df['ClassifiedPosition'] == '1'].iloc[0]
 leader_time = leader_row['Time']
 
-# Liczba okrążeń lidera
+# Number of laps completed by the leader
 laps_completed = session.laps[session.laps['Driver'] == leader_row['Abbreviation']].shape[0]
 
-# Średni czas okrążenia lidera
+# Average lap time of the leader
 avg_lap_time = leader_time / laps_completed
 avg_lap_time_ms = avg_lap_time.total_seconds() * 1000
 
-# Funkcja normalizacji czasu
+# Time normalization function
 def normalize_time(row):
     status = str(row['Status'])
     pos = str(row['ClassifiedPosition'])
     grid = str(row['GridPosition']) 
     
-    # Lider -> 0
+    # Leader -> 0
     if pos == '1':
         return 0.0
 
-    # Ukończony wyścig — Time to strata do lidera
+    # Finished race — Time to gap to leader
     if status == 'Finished' and pd.notnull(row['Time']):
         return row['Time'].total_seconds() * 1000
     
-    # Zdublowani kierowcy
+    # Lapped drivers
     elif '+1 Lap' in status or '+2 Laps' in status or '+3 Laps' in status:
         try:
             laps_behind = int(status.split()[0][1])
@@ -130,15 +135,33 @@ def normalize_time(row):
         except:
             return np.nan
     
-    # Inne przypadki (DNF)
+    # Other cases (DNF)
     else:
         return avg_lap_time_ms * float(grid) / 5
 
-# Zastosuj normalizację
+# Apply normalization
 df['GapToLeaderMs'] = df.apply(normalize_time, axis=1)
 
-# Posortuj po pozycji końcowej
+# Sort by final position
 df = df.sort_values(by='GapToLeaderMs')
 
-# Wyświetl końcowy wynik
-print(df[['Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Status', 'Points', 'GapToLeaderMs']])
+# Display final results
+print("=========== Results ===========")
+print(df[['Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Status', 'Points', 'GapToLeaderMs']],"\n")
+
+# TODO: Combine df and average_speed_sorted to get the average speed for each driver in the final results
+
+
+# Circuit Info - number of corners, length, etc.
+circuit_info = session.get_circuit_info()
+
+# Access the 'corners' DataFrame from the CircuitInfo object
+corners_df = circuit_info.corners
+
+# Extract only the 'Angle' and 'Distance' columns
+circuit_info_filtered = corners_df[['Angle', 'Distance']]
+
+# Print the filtered information
+print("=========== Track data (corners) ===========")
+print(circuit_info_filtered)
+print(f"Number of corners: {circuit_info_filtered.shape[0]}")
