@@ -32,20 +32,20 @@ def load_csv_data(directory: str) -> dict[pd.DataFrame]:
 # session name abbreviation: 'FP1', 'FP2', 'FP3', 'Q', 'S', 'SS', 'SQ', 'R'
 # full session name: 'Practice 1', 'Practice 2', 'Practice 3', 'Sprint', 'Sprint Shootout', 'Sprint Qualifying', 'Qualifying', 'Race'; provided names will be normalized, so that the name is case-insensitive
 # number of the session: 1, 2, 3, 4, 5
-races = ['FP1', 'FP2', 'FP3', 'Qualifying', 'Race']
+typesOfSessions = ['FP1', 'FP2', 'FP3', 'Qualifying', 'Race']
 years = [2019, 2020, 2021, 2022, 2023, 2024]
 def load_fastf1_data() -> dict:
     """
     Load data of all F1 rounds since 2019, basing on the FastF1 module.
     """
-    sessions = {x: [] for x in races}
+    sessions = {x: [] for x in typesOfSessions}
     for year in years:
         break_flag = 0
-        for i in range(1, 100):
-            for race in races:
+        for i in range(1, 26):
+            for sessionType in typesOfSessions:
                 try:
-                    session = fastf1.get_session(year, i, race)
-                    sessions[race].append(session)
+                    session = fastf1.get_session(year, i, sessionType)
+                    sessions[sessionType].append(session)
                 except ValueError:
                     break_flag = 1
                     break
