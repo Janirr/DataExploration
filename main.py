@@ -61,10 +61,10 @@ laps = session.laps
 laps = laps.reset_index(drop=True)
 
 
-laps_clean = laps[['Time', 'Driver', 'SpeedI1', 'SpeedI2', 'Speeresults_dfL', 'SpeedST']].dropna()
+laps_clean = laps[['Time', 'Driver', 'SpeedI1', 'SpeedI2', 'SpeedFL', 'SpeedST']].dropna()
 # Calculate average speed trap for each driver
 average_speed = laps_clean.groupby('Driver').mean().reset_index()
-average_speed['AverageSpeed'] = average_speed[['SpeedI1', 'SpeedI2', 'Speeresults_dfL', 'SpeedST']].mean(axis=1)
+average_speed['AverageSpeed'] = average_speed[['SpeedI1', 'SpeedI2', 'SpeedFL', 'SpeedST']].mean(axis=1)
 # Sort by AverageSpeed in descending order
 speed_df = average_speed.sort_values(by='AverageSpeed', ascending=False).reset_index(drop=True)
 print("=========== Top speeds ===========")
@@ -113,34 +113,8 @@ laps_completed = session.laps[session.laps['Driver'] == leader_row['Abbreviation
 avg_lap_time = leader_time / laps_completed
 avg_lap_time_ms = avg_lap_time.total_seconds() * 1000
 
-# Time normalization function
-def normalize_time(row):
-    status = str(row['Status'])
-    pos = str(row['ClassifiedPosition'])
-    grid = str(row['GridPosition']) 
-    
-    # Leader -> 0
-    if pos == '1':
-        return 0.0
-
-    # Finished race — Time to gap to leader
-    if status == 'Finished' and pd.notnull(row['Time']):
-        return row['Time'].total_seconds() * 1000
-    
-    # Lapped drivers
-    elif '+1 Lap' in status or '+2 Laps' in status or '+3 Laps' in status:
-        try:
-            laps_behind = int(status.split()[0][1])
-            return laps_behind * avg_lap_time_ms + int(pos) * 5000
-        except:
-            return np.nan
-    
-    # Other cases (DNF)
-    else:
-        return avg_lap_time_ms * float(grid) / 5
-
 # Apply normalization
-results_df['GapToLeaderMs'] = results_df.apply(normalize_time, axis=1)
+results_df['GapToLeaderMs'] = results_df.apply(lambda row: utils.normalize_time(row, avg_lap_time_ms), axis=1)
 
 # Sort by final position
 results_df = results_df.sort_values(by='GapToLeaderMs')

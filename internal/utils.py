@@ -4,6 +4,7 @@ An internal module containing various utilities like constants or data loading f
 import os
 import fastf1
 import pandas as pd
+import numpy as np
 
 # Set pandas display options to show all columns and rows
 pd.set_option('display.max_columns', None)  # Show all columns
@@ -53,5 +54,31 @@ def load_fastf1_data() -> dict:
                 break
     return sessions
 
+# Time normalization function
+def normalize_time(row, avg_lap_time_ms: float) -> float:
+    status = str(row['Status'])
+    pos = str(row['ClassifiedPosition'])
+    grid = str(row['GridPosition']) 
+    
+    # Leader -> 0
+    if pos == '1':
+        return 0.0
+
+    # Finished race — Time to gap to leader
+    if status == 'Finished' and pd.notnull(row['Time']):
+        return row['Time'].total_seconds() * 1000
+    
+    # Lapped drivers
+    elif '+1 Lap' in status or '+2 Laps' in status or '+3 Laps' in status:
+        try:
+            laps_behind = int(status.split()[0][1])
+            return laps_behind * avg_lap_time_ms + int(pos) * 5000
+        except:
+            return np.nan
+    
+    # Other cases (DNF)
+    else:
+        return avg_lap_time_ms * float(grid) / 5
+
 if __name__ == "__main__":
-    print("This module is not meant to be used on its own.")
+    print("This module (internal/utils.py) is not meant to be used on its own.")
