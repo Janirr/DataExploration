@@ -1,13 +1,16 @@
 import internal.utils as utils
 import pandas as pd
 import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from scipy.stats import spearmanr
 
 # Load fastf1 data
 fastf1_sessions = utils.load_fastf1_data()
 # session = fastf1_sessions['Race'][0] #2nd race from 2022-2025
 omni_weather_df, omni_results_df, omni_speed_df, omni_corners_df = pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
 
-for session in fastf1_sessions['Race']:
+for session in fastf1_sessions['Race'][:10]:
     # Session name format is as follows:
     # [YEAR] Season Round [ROUND NO]: [GRAND PRIX NAME] - [information regarding whether the session is a practice session, qualifying race or the main race itself]
 
@@ -33,14 +36,16 @@ for session in fastf1_sessions['Race']:
     # WindDirection (int): Wind direction [°] (0°-359°)
     # WindSpeed (float): Wind speed [m/s]
     """
-    weather_data = session.weather_data
-    weather_data = weather_data.reset_index(drop=True)
-    # Drop any rows with NaN in relevant columns to avoid skewing averages
-    weather_df = weather_data[['AirTemp', 'TrackTemp', 'Rainfall', 'WindSpeed']].dropna()
-    weather_df['Year'], weather_df['GrandPrix'] = year, grand_prix
-    # Append to the general weather dataframe
-    omni_weather_df = pd.concat([omni_weather_df, weather_df])
-
+    try:
+        weather_data = session.weather_data
+        weather_data = weather_data.reset_index(drop=True)
+        # Drop any rows with NaN in relevant columns to avoid skewing averages
+        weather_df = weather_data[['AirTemp', 'TrackTemp', 'Rainfall', 'WindSpeed']].dropna()
+        weather_df['Year'], weather_df['GrandPrix'] = year, grand_prix
+        # Append to the general weather dataframe
+        omni_weather_df = pd.concat([omni_weather_df, weather_df])
+    except:
+        pass
 
 
     # Laps - Top speed
@@ -56,22 +61,25 @@ for session in fastf1_sessions['Race']:
     Sector1/2/3SessionTime (pandas.Timedelta): Session time at which the corresponding sector time was set (one column for each sector’s session time)
     SpeedI1/I2/FL/ST: Speed trap speeds; FL is speed at the finish line; I1 and I2 are speed traps in sector 1 and 2 respectively; ST maybe a speed trap on the longest straight (?)
     """
-    laps = session.laps
-    laps = laps.reset_index(drop=True)
+    try:
+        laps = session.laps
+        laps = laps.reset_index(drop=True)
 
 
-    laps_clean = laps[['Time', 'Driver', 'SpeedI1', 'SpeedI2', 'SpeedFL', 'SpeedST']].dropna()
-    # Calculate average speed trap for each driver
-    average_speed = laps_clean.groupby('Driver').mean().reset_index()
-    average_speed['AverageSpeed'] = average_speed[['SpeedI1', 'SpeedI2', 'SpeedFL', 'SpeedST']].mean(axis=1)
-    # Sort by AverageSpeed in descending order
-    speed_df = average_speed.sort_values(by='AverageSpeed', ascending=False).reset_index(drop=True)
-    # print("=========== Top speeds ===========")
-    # print("Average Speed Trap for each driver (sorted):\n", speed_df,"\n")
+        laps_clean = laps[['Time', 'Driver', 'SpeedI1', 'SpeedI2', 'SpeedFL', 'SpeedST']].dropna()
+        # Calculate average speed trap for each driver
+        average_speed = laps_clean.groupby('Driver').mean().reset_index()
+        average_speed['AverageSpeed'] = average_speed[['SpeedI1', 'SpeedI2', 'SpeedFL', 'SpeedST']].mean(axis=1)
+        # Sort by AverageSpeed in descending order
+        speed_df = average_speed.sort_values(by='AverageSpeed', ascending=False).reset_index(drop=True)
+        # print("=========== Top speeds ===========")
+        # print("Average Speed Trap for each driver (sorted):\n", speed_df,"\n")
 
-    # Append to the general speed dataframe
-    speed_df['Year'], speed_df['GrandPrix'] = year, grand_prix
-    omni_speed_df = pd.concat([omni_speed_df, speed_df])
+        # Append to the general speed dataframe
+        speed_df['Year'], speed_df['GrandPrix'] = year, grand_prix
+        omni_speed_df = pd.concat([omni_speed_df, speed_df])
+    except:
+        pass
 
     # Results
     """
@@ -97,51 +105,57 @@ for session in fastf1_sessions['Race']:
     Status | str | A status message to indicate if and how the driver finished the race or to indicate the cause of a DNF. Possible values include but are not limited to Finished, + 1 Lap, Crash, Gearbox
     Points | float | The number of points received by each driver for their finishing result.
     """
-    results = session.results[['DriverNumber', 'Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Time', 'Status', 'Points']]
+    try:
+        results = session.results[['DriverNumber', 'Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Time', 'Status', 'Points']]
 
-    # Copy the results data
-    results_df = results.copy()
+        # Copy the results data
+        results_df = results.copy()
 
-    # Ensure that Time is timedelta type
-    results_df['Time'] = pd.to_timedelta(results_df['Time'], errors='coerce')
+        # Ensure that Time is timedelta type
+        results_df['Time'] = pd.to_timedelta(results_df['Time'], errors='coerce')
 
-    # Leader
-    leader_row = results_df[results_df['ClassifiedPosition'] == '1'].iloc[0]
-    leader_time = leader_row['Time']
+        # Leader
+        leader_row = results_df[results_df['ClassifiedPosition'] == '1'].iloc[0]
+        leader_time = leader_row['Time']
 
-    # Number of laps completed by the leader
-    laps_completed = session.laps[session.laps['Driver'] == leader_row['Abbreviation']].shape[0]
+        # Number of laps completed by the leader
+        laps_completed = session.laps[session.laps['Driver'] == leader_row['Abbreviation']].shape[0]
 
-    # Średni czas okrążenia lidera
-    avg_lap_time = leader_time / laps_completed
-    avg_lap_time_ms = avg_lap_time.total_seconds() * 1000
+        # Średni czas okrążenia lidera
+        avg_lap_time = leader_time / laps_completed
+        avg_lap_time_ms = avg_lap_time.total_seconds() * 1000
 
-    # Apply normalization
-    results_df['GapToLeaderMs'] = results_df.apply(lambda row: utils.normalize_time(row, avg_lap_time_ms), axis=1)
+        # Apply normalization
+        results_df['GapToLeaderMs'] = results_df.apply(lambda row: utils.normalize_time(row, avg_lap_time_ms), axis=1)
 
-    # Sort by final position
-    # results_df = results_df.sort_values(by='GapToLeaderMs')
+        # Sort by final position
+        # results_df = results_df.sort_values(by='GapToLeaderMs')
 
-    # Display final results
-    # print("=========== Results ===========")
-    # print(results_df[['Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Status', 'Points', 'GapToLeaderMs']],"\n")
-    
-    # Append to the general results dataframe
-    results_df['Year'], results_df['GrandPrix'] = year, grand_prix
-    omni_results_df = pd.concat([omni_results_df, results_df])
+        # Display final results
+        # print("=========== Results ===========")
+        # print(results_df[['Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Status', 'Points', 'GapToLeaderMs']],"\n")
+        
+        # Append to the general results dataframe
+        results_df['Year'], results_df['GrandPrix'] = year, grand_prix
+        omni_results_df = pd.concat([omni_results_df, results_df])
+    except:
+        pass
 
-    # Circuit Info - number of corners, length, etc.
-    circuit_info = session.get_circuit_info()
+    try:
+        # Circuit Info - number of corners, length, etc.
+        circuit_info = session.get_circuit_info()
 
-    # Access the 'corners' DataFrame from the CircuitInfo object
-    corners_df = circuit_info.corners
+        # Access the 'corners' DataFrame from the CircuitInfo object
+        corners_df = circuit_info.corners
 
-    # Append to the general corner dataframe
-    corners_df['Year'], corners_df['GrandPrix'] = year, grand_prix
-    omni_corners_df = pd.concat([omni_corners_df, corners_df])
+        # Append to the general corner dataframe
+        corners_df['Year'], corners_df['GrandPrix'] = year, grand_prix
+        omni_corners_df = pd.concat([omni_corners_df, corners_df])
 
-    # Extract only the 'Angle' and 'Distance' columns
-    circuit_info_filtered = corners_df[['Angle', 'Distance']]
+        # Extract only the 'Angle' and 'Distance' columns
+        circuit_info_filtered = corners_df[['Angle', 'Distance']]
+    except:
+        pass
 
     # Print the filtered information
     # print("=========== Track data (corners) ===========")
@@ -178,3 +192,13 @@ print(omni_results_df.head())
 
 print("=========== Corners Data ===========")
 print(omni_corners_df.head())
+
+corr, p_values = spearmanr(omni_results_df)
+
+# spearmanr returns a NumPy array (corr), so convert it to a DataFrame
+corr_df = pd.DataFrame(corr, index=omni_results_df.columns, columns=omni_results_df.columns)
+
+plt.figure(figsize=(8, 6))
+sns.heatmap(corr_df, annot=True, cmap='coolwarm', center=0, square=True)
+plt.title("Spearman Correlation Heatmap")
+plt.show()
