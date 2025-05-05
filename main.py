@@ -105,14 +105,13 @@ for session in fastf1_sessions['Race'][:10]:
     Status | str | A status message to indicate if and how the driver finished the race or to indicate the cause of a DNF. Possible values include but are not limited to Finished, + 1 Lap, Crash, Gearbox
     Points | float | The number of points received by each driver for their finishing result.
     """
-    try:
-        results = session.results[['DriverNumber', 'Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Time', 'Status', 'Points']]
+    results = session.results[['DriverNumber', 'Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Time', 'Status', 'Points']]
 
-        # Copy the results data
-        results_df = results.copy()
+    # Copy the results data
+    results_df = results.copy()
 
-        # Ensure that Time is timedelta type
-        results_df['Time'] = pd.to_timedelta(results_df['Time'], errors='coerce')
+    # Ensure that Time is timedelta type
+    results_df['Time'] = pd.to_timedelta(results_df['Time'], errors='coerce')
 
     # Leader
     leader_filter = results_df[results_df['ClassifiedPosition'] == '1']
@@ -137,8 +136,6 @@ for session in fastf1_sessions['Race'][:10]:
         # Append to the general results dataframe
         results_df['Year'], results_df['GrandPrix'] = year, grand_prix
         omni_results_df = pd.concat([omni_results_df, results_df])
-    except:
-        pass
 
     try:
         # Circuit Info - number of corners, length, etc.
