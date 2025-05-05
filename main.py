@@ -106,18 +106,17 @@ for session in fastf1_sessions['Race']:
     results_df['Time'] = pd.to_timedelta(results_df['Time'], errors='coerce')
 
     # Leader
-    leader_row = results_df[results_df['ClassifiedPosition'] == '1'].iloc[0]
-    leader_time = leader_row['Time']
-
-    # Number of laps completed by the leader
-    laps_completed = session.laps[session.laps['Driver'] == leader_row['Abbreviation']].shape[0]
-
-    # Średni czas okrążenia lidera
-    avg_lap_time = leader_time / laps_completed
-    avg_lap_time_ms = avg_lap_time.total_seconds() * 1000
-
-    # Apply normalization
-    results_df['GapToLeaderMs'] = results_df.apply(lambda row: utils.normalize_time(row, avg_lap_time_ms), axis=1)
+    leader_filter = results_df[results_df['ClassifiedPosition'] == '1']
+    if not leader_filter.empty:
+        leader_row = leader_filter.iloc[0]
+        leader_time = leader_row['Time']
+        laps_completed = session.laps[session.laps['Driver'] == leader_row['Abbreviation']].shape[0]
+        avg_lap_time = leader_time / laps_completed
+        avg_lap_time_ms = avg_lap_time.total_seconds() * 1000
+        results_df['GapToLeaderMs'] = results_df.apply(lambda row: utils.normalize_time(row, avg_lap_time_ms), axis=1)
+    else:
+        print(f"No leader found for session {year} {grand_prix}. Skipping GapToLeader calculation.")
+        results_df['GapToLeaderMs'] = np.nan
 
     # Sort by final position
     # results_df = results_df.sort_values(by='GapToLeaderMs')
@@ -178,3 +177,8 @@ print(omni_results_df.head())
 
 print("=========== Corners Data ===========")
 print(omni_corners_df.head())
+
+omni_weather_df.to_csv("omni_weather_data.csv", index=False)
+omni_results_df.to_csv("omni_results_data.csv", index=False)
+omni_speed_df.to_csv("omni_speed_data.csv", index=False)
+omni_corners_df.to_csv("omni_corners_data.csv", index=False)
