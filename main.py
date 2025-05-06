@@ -177,6 +177,42 @@ average_wind_speed_temp = omni_weather_df['WindSpeed'].mean()
 rainfall_fraction = omni_weather_df['Rainfall'].mean()  # Between 0 and 1
 rainfall_count = omni_weather_df['Rainfall'].sum()      # Total number of rainy intervals
 
+# Ensure that Angle is numeric
+omni_corners_df['Angle'] = pd.to_numeric(omni_corners_df['Angle'], errors='coerce')
+
+# Categorize each corner by speed based on the angle
+def categorize_corner(angle):
+    if abs(angle) > 100:
+        return 'Slow'
+    elif abs(angle) > 50:
+        return 'Medium'
+    else:
+        return 'Fast'
+
+omni_corners_df['CornerType'] = omni_corners_df['Angle'].apply(categorize_corner)
+
+# Group by Grand Prix and Year and count each corner type
+corner_summary_df = omni_corners_df.groupby(['Year', 'GrandPrix', 'CornerType']).size().unstack(fill_value=0).reset_index()
+
+# Rename columns for clarity
+corner_summary_df.columns.name = None
+corner_summary_df.rename(columns={
+    'Slow': 'NumSlowCorners',
+    'Medium': 'NumMediumCorners',
+    'Fast': 'NumFastCorners'
+}, inplace=True)
+
+# Fill missing categories with 0 if some types are absent in some circuits
+for col in ['NumSlowCorners', 'NumMediumCorners', 'NumFastCorners']:
+    if col not in corner_summary_df.columns:
+        corner_summary_df[col] = 0
+
+# Save to CSV
+corner_summary_df.to_csv('corner_type_summary.csv', index=False)
+
+# Display a preview
+print(corner_summary_df.head())
+
 print("=========== Weather Data ===========")
 print(f"Average Wind Speed: {average_wind_speed_temp:.2f} m/s")
 print(f"Average Air Temperature: {average_air_temp:.2f} °C")
