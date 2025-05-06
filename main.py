@@ -197,49 +197,10 @@ omni_results_df.to_csv("omni_results_data.csv", index=False)
 omni_speed_df.to_csv("omni_speed_data.csv", index=False)
 omni_corners_df.to_csv("omni_corners_data.csv", index=False)
 
-# do omni results append -> speed data (5 atrybutów), corners data (3) (liczba wolnych zakrętów, średnich, szybkich), weather data (5 atrybutów)
-
 corr, p_values = spearmanr(omni_results_df)
 
 # spearmanr returns a NumPy array (corr), so convert it to a DataFrame
 corr_df = pd.DataFrame(corr, index=omni_results_df.columns, columns=omni_results_df.columns)
-
-# Ensure that Angle is numeric
-omni_corners_df['Angle'] = pd.to_numeric(omni_corners_df['Angle'], errors='coerce')
-
-# Categorize each corner by speed based on the angle
-def categorize_corner(angle):
-    if abs(angle) > 100:
-        return 'Slow'
-    elif abs(angle) > 50:
-        return 'Medium'
-    else:
-        return 'Fast'
-
-omni_corners_df['CornerType'] = omni_corners_df['Angle'].apply(categorize_corner)
-
-# Group by Grand Prix and Year and count each corner type
-corner_summary_df = omni_corners_df.groupby(['Year', 'GrandPrix', 'CornerType']).size().unstack(fill_value=0).reset_index()
-
-# Rename columns for clarity
-corner_summary_df.columns.name = None
-corner_summary_df.rename(columns={
-    'Slow': 'NumSlowCorners',
-    'Medium': 'NumMediumCorners',
-    'Fast': 'NumFastCorners'
-}, inplace=True)
-
-# Fill missing categories with 0 if some types are absent in some circuits
-for col in ['NumSlowCorners', 'NumMediumCorners', 'NumFastCorners']:
-    if col not in corner_summary_df.columns:
-        corner_summary_df[col] = 0
-
-# Save to CSV
-corner_summary_df.to_csv('corner_type_summary.csv', index=False)
-
-# Display a preview
-print(corner_summary_df.head())
-
 
 plt.figure(figsize=(8, 6))
 sns.heatmap(corr_df, annot=True, cmap='coolwarm', center=0, square=True)
