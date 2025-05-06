@@ -74,6 +74,7 @@ for session in fastf1_sessions['Race'][:10]:
         speed_df = average_speed.sort_values(by='AverageSpeed', ascending=False).reset_index(drop=True)
         # print("=========== Top speeds ===========")
         # print("Average Speed Trap for each driver (sorted):\n", speed_df,"\n")
+        speed_df['AvgSpeedGap'] = speed_df['AverageSpeed'][0] - speed_df['AverageSpeed']
 
         # Append to the general speed dataframe
         speed_df['Year'], speed_df['GrandPrix'] = year, grand_prix
@@ -208,7 +209,7 @@ for col in ['NumSlowCorners', 'NumMediumCorners', 'NumFastCorners']:
         corner_summary_df[col] = 0
 
 # Save to CSV
-corner_summary_df.to_csv('corner_type_summary.csv', index=False)
+# corner_summary_df.to_csv('corner_type_summary.csv', index=False)
 
 # Display a preview
 print(corner_summary_df.head())
@@ -242,17 +243,22 @@ omni_df = omni_results_df.copy()
 
 # Append speed DF attributes
 omni_df = omni_df.merge(
-    omni_speed_df[["Year", "GrandPrix", "AverageSpeed"]],
+    omni_speed_df[["Year", "GrandPrix", "AvgSpeedGap"]],
     on=["Year", "GrandPrix"],
     how="left"
 )
 # Append weather DF attributes
 omni_df = omni_df.merge(
-    omni_speed_df[["Year", "GrandPrix", "Avg Air Temp (°C)", "Avg Track Temp (°C)", "Avg Wind Speed (m/s)", "Rainfall Fraction", "Rainfall Count"]],
+    omni_weather_df[["Year", "GrandPrix", "Avg Air Temp (°C)", "Avg Track Temp (°C)", "Avg Wind Speed (m/s)", "Rainfall Fraction", "Rainfall Count"]],
     on=["Year", "GrandPrix"],
     how="left"
 )
 # Append corner DF attributes
+omni_df = omni_df.merge(
+    corner_summary_df[["Year", "GrandPrix", "NumFastCorners", "NumMediumCorners", "NumSlowCorners"]],
+    on=["Year", "GrandPrix"],
+    how="left"
+)
 
 corr, p_values = spearmanr(omni_df)
 
