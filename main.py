@@ -105,37 +105,40 @@ for session in fastf1_sessions['Race'][:10]:
     Status | str | A status message to indicate if and how the driver finished the race or to indicate the cause of a DNF. Possible values include but are not limited to Finished, + 1 Lap, Crash, Gearbox
     Points | float | The number of points received by each driver for their finishing result.
     """
-    results = session.results[['DriverNumber', 'Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Time', 'Status', 'Points']]
+    try:
+        results = session.results[['DriverNumber', 'Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Time', 'Status', 'Points']]
 
-    # Copy the results data
-    results_df = results.copy()
+        # Copy the results data
+        results_df = results.copy()
 
-    # Ensure that Time is timedelta type
-    results_df['Time'] = pd.to_timedelta(results_df['Time'], errors='coerce')
+        # Ensure that Time is timedelta type
+        results_df['Time'] = pd.to_timedelta(results_df['Time'], errors='coerce')
 
-    # Leader
-    leader_filter = results_df[results_df['ClassifiedPosition'] == '1']
-    if not leader_filter.empty:
-        leader_row = leader_filter.iloc[0]
-        leader_time = leader_row['Time']
-        laps_completed = session.laps[session.laps['Driver'] == leader_row['Abbreviation']].shape[0]
-        avg_lap_time = leader_time / laps_completed
-        avg_lap_time_ms = avg_lap_time.total_seconds() * 1000
-        results_df['GapToLeaderMs'] = results_df.apply(lambda row: utils.normalize_time(row, avg_lap_time_ms), axis=1)
-    else:
-        print(f"No leader found for session {year} {grand_prix}. Skipping GapToLeader calculation.")
-        results_df['GapToLeaderMs'] = np.nan
+        # Leader
+        leader_filter = results_df[results_df['ClassifiedPosition'] == '1']
+        if not leader_filter.empty:
+            leader_row = leader_filter.iloc[0]
+            leader_time = leader_row['Time']
+            laps_completed = session.laps[session.laps['Driver'] == leader_row['Abbreviation']].shape[0]
+            avg_lap_time = leader_time / laps_completed
+            avg_lap_time_ms = avg_lap_time.total_seconds() * 1000
+            results_df['GapToLeaderMs'] = results_df.apply(lambda row: utils.normalize_time(row, avg_lap_time_ms), axis=1)
+        else:
+            print(f"No leader found for session {year} {grand_prix}. Skipping GapToLeader calculation.")
+            results_df['GapToLeaderMs'] = np.nan
 
-        # Sort by final position
-        # results_df = results_df.sort_values(by='GapToLeaderMs')
+            # Sort by final position
+            # results_df = results_df.sort_values(by='GapToLeaderMs')
 
-        # Display final results
-        # print("=========== Results ===========")
-        # print(results_df[['Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Status', 'Points', 'GapToLeaderMs']],"\n")
-        
-        # Append to the general results dataframe
-        results_df['Year'], results_df['GrandPrix'] = year, grand_prix
+            # Display final results
+            # print("=========== Results ===========")
+            # print(results_df[['Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Status', 'Points', 'GapToLeaderMs']],"\n")
+            
+            # Append to the general results dataframe
+            results_df['Year'], results_df['GrandPrix'] = year, grand_prix
         omni_results_df = pd.concat([omni_results_df, results_df])
+    except:
+        pass
 
     try:
         # Circuit Info - number of corners, length, etc.
@@ -193,3 +196,13 @@ omni_weather_df.to_csv("omni_weather_data.csv", index=False)
 omni_results_df.to_csv("omni_results_data.csv", index=False)
 omni_speed_df.to_csv("omni_speed_data.csv", index=False)
 omni_corners_df.to_csv("omni_corners_data.csv", index=False)
+
+corr, p_values = spearmanr(omni_results_df)
+
+# spearmanr returns a NumPy array (corr), so convert it to a DataFrame
+corr_df = pd.DataFrame(corr, index=omni_results_df.columns, columns=omni_results_df.columns)
+
+plt.figure(figsize=(8, 6))
+sns.heatmap(corr_df, annot=True, cmap='coolwarm', center=0, square=True)
+plt.title("Results DataFrame Correlation Heatmap")
+plt.show()
