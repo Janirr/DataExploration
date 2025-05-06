@@ -1,201 +1,201 @@
-DriverNumber,Abbreviation,TeamName,ClassifiedPosition,GridPosition,Time,Status,Points,GapToLeaderMs
-77,BOT,Mercedes,1,2.0,0 days 01:25:27.325000,Finished,26.0,0.0
-44,HAM,Mercedes,2,1.0,0 days 00:00:20.886000,Finished,18.0,20886.0
-33,VER,Red Bull Racing,3,4.0,0 days 00:00:22.520000,Finished,15.0,22520.0
-5,VET,Ferrari,4,3.0,0 days 00:00:57.109000,Finished,12.0,57109.0
-16,LEC,Ferrari,5,5.0,0 days 00:00:58.203000,Finished,10.0,58203.0
-20,MAG,Haas F1 Team,6,7.0,0 days 00:01:27.156000,Finished,8.0,87156.0
-27,HUL,Renault,7,11.0,,+1 Lap,6.0,123402.155
-7,RAI,Alfa Romeo Racing,8,9.0,,+1 Lap,4.0,128402.155
-18,STR,Racing Point,9,16.0,,+1 Lap,2.0,133402.155
-26,KVY,Toro Rosso,10,15.0,,+1 Lap,1.0,138402.155
-10,GAS,Red Bull Racing,11,17.0,,+1 Lap,0.0,143402.155
-4,NOR,McLaren,12,8.0,,+1 Lap,0.0,148402.155
-11,PER,Racing Point,13,10.0,,+1 Lap,0.0,153402.155
-23,ALB,Toro Rosso,14,13.0,,+1 Lap,0.0,158402.155
-99,GIO,Alfa Romeo Racing,15,14.0,,+1 Lap,0.0,163402.155
-63,RUS,Williams,16,19.0,,+2 Laps,0.0,256804.31
-88,KUB,Williams,17,20.0,,+3 Laps,0.0,350206.46499999997
-8,GRO,Haas F1 Team,R,6.0,,Wheel,0.0,106082.58599999998
-3,RIC,Renault,R,12.0,,Damage,0.0,212165.17199999996
-55,SAI,McLaren,R,18.0,,Engine,0.0,318247.75800000003
-44,HAM,Mercedes,1,3.0,0 days 01:34:21.295000,Finished,25.0,0.0
-77,BOT,Mercedes,2,4.0,0 days 00:00:02.980000,Finished,18.0,2980.0
-16,LEC,Ferrari,3,1.0,0 days 00:00:06.131000,Finished,16.0,6131.0
-33,VER,Red Bull Racing,4,5.0,0 days 00:00:06.408000,Finished,12.0,6408.0
-5,VET,Ferrari,5,2.0,0 days 00:00:36.068000,Finished,10.0,36068.0
-4,NOR,McLaren,6,9.0,0 days 00:00:45.754000,Finished,8.0,45754.0
-7,RAI,Alfa Romeo Racing,7,8.0,0 days 00:00:47.470000,Finished,6.0,47470.0
-10,GAS,Red Bull Racing,8,13.0,0 days 00:00:58.094000,Finished,4.0,58094.0
-23,ALB,Toro Rosso,9,12.0,0 days 00:01:02.697000,Finished,2.0,62697.0
-11,PER,Racing Point,10,14.0,0 days 00:01:03.696000,Finished,1.0,63696.0
-99,GIO,Alfa Romeo Racing,11,16.0,0 days 00:01:04.599000,Finished,0.0,64599.00000000001
-26,KVY,Toro Rosso,12,15.0,,+1 Lap,0.0,159320.964
-20,MAG,Haas F1 Team,13,6.0,,+1 Lap,0.0,164320.964
-18,STR,Racing Point,14,18.0,,+1 Lap,0.0,169320.964
-63,RUS,Williams,15,19.0,,+1 Lap,0.0,174320.964
-88,KUB,Williams,16,20.0,,+2 Laps,0.0,278641.928
-27,HUL,Renault,R,17.0,,Engine,0.0,337691.27760000003
-3,RIC,Renault,R,10.0,,Out of fuel,0.0,198641.928
-55,SAI,McLaren,R,7.0,,Collision damage,0.0,139049.34960000002
-8,GRO,Haas F1 Team,R,11.0,,Retired,0.0,218506.1208
-44,HAM,Mercedes,1,2.0,0 days 01:32:06.350000,Finished,25.0,0.0
-77,BOT,Mercedes,2,1.0,0 days 00:00:06.552000,Finished,18.0,6552.0
-5,VET,Ferrari,3,3.0,0 days 00:00:13.774000,Finished,15.0,13774.0
-33,VER,Red Bull Racing,4,5.0,0 days 00:00:27.627000,Finished,12.0,27627.0
-16,LEC,Ferrari,5,4.0,0 days 00:00:31.276000,Finished,10.0,31276.0
-10,GAS,Red Bull Racing,6,6.0,0 days 00:01:29.307000,Finished,9.0,89307.0
-3,RIC,Renault,7,7.0,,+1 Lap,6.0,133684.821
-11,PER,Racing Point,8,12.0,,+1 Lap,4.0,138684.821
-7,RAI,Alfa Romeo Racing,9,13.0,,+1 Lap,2.0,143684.821
-23,ALB,Toro Rosso,10,0.0,,+1 Lap,1.0,148684.821
-8,GRO,Haas F1 Team,11,10.0,,+1 Lap,0.0,153684.821
-18,STR,Racing Point,12,16.0,,+1 Lap,0.0,158684.821
-20,MAG,Haas F1 Team,13,9.0,,+1 Lap,0.0,163684.821
-55,SAI,McLaren,14,14.0,,+1 Lap,0.0,168684.821
-99,GIO,Alfa Romeo Racing,15,19.0,,+1 Lap,0.0,173684.821
-63,RUS,Williams,16,17.0,,+2 Laps,0.0,277369.642
-88,KUB,Williams,17,18.0,,+2 Laps,0.0,282369.642
-4,NOR,McLaren,18,15.0,,Collision,0.0,296054.463
-26,KVY,Toro Rosso,R,11.0,,Collision,0.0,217106.60619999998
-27,HUL,Renault,R,8.0,,Power Unit,0.0,157895.7136
-77,BOT,Mercedes,1,1.0,0 days 01:31:52.942000,Finished,25.0,0.0
-44,HAM,Mercedes,2,2.0,0 days 00:00:01.524000,Finished,18.0,1524.0
-5,VET,Ferrari,3,3.0,0 days 00:00:11.739000,Finished,15.0,11739.0
-33,VER,Red Bull Racing,4,4.0,0 days 00:00:17.493000,Finished,12.0,17493.0
-16,LEC,Ferrari,5,8.0,0 days 00:01:09.107000,Finished,11.0,69107.0
-11,PER,Racing Point,6,5.0,0 days 00:01:16.416000,Finished,8.0,76416.0
-55,SAI,McLaren,7,9.0,0 days 00:01:23.826000,Finished,6.0,83826.0
-4,NOR,McLaren,8,7.0,0 days 00:01:40.268000,Finished,4.0,100268.0
-18,STR,Racing Point,9,13.0,0 days 00:01:43.816000,Finished,2.0,103816.0
-7,RAI,Alfa Romeo Racing,10,0.0,,+1 Lap,1.0,158096.901
-23,ALB,Toro Rosso,11,11.0,,+1 Lap,0.0,163096.901
-99,GIO,Alfa Romeo Racing,12,17.0,,+1 Lap,0.0,168096.901
-20,MAG,Haas F1 Team,13,12.0,,+1 Lap,0.0,173096.901
-27,HUL,Renault,14,15.0,,+1 Lap,0.0,178096.901
-63,RUS,Williams,15,16.0,,+2 Laps,0.0,291193.802
-88,KUB,Williams,16,0.0,,+2 Laps,0.0,296193.802
-10,GAS,Red Bull Racing,R,0.0,,Transmission,0.0,0.0
-8,GRO,Haas F1 Team,R,14.0,,Brakes,0.0,302671.3228
-26,KVY,Toro Rosso,R,6.0,,Collision,0.0,129716.2812
-3,RIC,Renault,R,10.0,,Collision,0.0,216193.802
-44,HAM,Mercedes,1,2.0,0 days 01:35:50.443000,Finished,26.0,0.0
-77,BOT,Mercedes,2,1.0,0 days 00:00:04.074000,Finished,18.0,4074.0
-33,VER,Red Bull Racing,3,4.0,0 days 00:00:07.679000,Finished,15.0,7679.0
-5,VET,Ferrari,4,3.0,0 days 00:00:09.167000,Finished,12.0,9167.0
-16,LEC,Ferrari,5,5.0,0 days 00:00:13.361000,Finished,10.0,13361.0
-10,GAS,Red Bull Racing,6,6.0,0 days 00:00:19.576000,Finished,8.0,19576.0
-20,MAG,Haas F1 Team,7,8.0,0 days 00:00:28.159000,Finished,6.0,28159.0
-55,SAI,McLaren,8,12.0,0 days 00:00:32.342000,Finished,4.0,32342.0
-26,KVY,Toro Rosso,9,9.0,0 days 00:00:33.056000,Finished,2.0,33056.0
-8,GRO,Haas F1 Team,10,7.0,0 days 00:00:34.641000,Finished,1.0,34641.0
-23,ALB,Toro Rosso,11,11.0,0 days 00:00:35.445000,Finished,0.0,35445.0
-3,RIC,Renault,12,13.0,0 days 00:00:36.758000,Finished,0.0,36758.0
-27,HUL,Renault,13,0.0,0 days 00:00:39.241000,Finished,0.0,39241.0
-7,RAI,Alfa Romeo Racing,14,14.0,0 days 00:00:41.803000,Finished,0.0,41803.0
-11,PER,Racing Point,15,15.0,0 days 00:00:46.877000,Finished,0.0,46877.0
-99,GIO,Alfa Romeo Racing,16,18.0,0 days 00:00:47.691000,Finished,0.0,47691.0
-63,RUS,Williams,17,19.0,,+1 Lap,0.0,172127.924
-88,KUB,Williams,18,17.0,,+1 Lap,0.0,177127.924
-18,STR,Racing Point,R,16.0,,Collision,0.0,278809.3568
-4,NOR,McLaren,R,10.0,,Collision,0.0,174255.848
-44,HAM,Mercedes,1,1.0,0 days 01:43:28.437000,Finished,25.0,0.0
-5,VET,Ferrari,2,4.0,0 days 00:00:02.602000,Finished,18.0,2602.0
-77,BOT,Mercedes,3,2.0,0 days 00:00:03.162000,Finished,15.0,3162.0
-33,VER,Red Bull Racing,4,3.0,0 days 00:00:05.537000,Finished,12.0,5537.0
-10,GAS,Red Bull Racing,5,8.0,0 days 00:00:09.946000,Finished,11.0,9946.0
-55,SAI,McLaren,6,9.0,0 days 00:00:53.454000,Finished,8.0,53454.0
-26,KVY,Toro Rosso,7,7.0,0 days 00:00:54.574000,Finished,6.0,54574.0
-23,ALB,Toro Rosso,8,10.0,0 days 00:00:55.200000,Finished,4.0,55200.0
-3,RIC,Renault,9,6.0,0 days 00:01:00.894000,Finished,2.0,60894.0
-8,GRO,Haas F1 Team,10,13.0,0 days 00:01:01.034000,Finished,1.0,61034.0
-4,NOR,McLaren,11,12.0,0 days 00:01:06.801000,Finished,0.0,66801.0
-11,PER,Racing Point,12,16.0,,+1 Lap,0.0,139595.34600000002
-27,HUL,Renault,13,11.0,,+1 Lap,0.0,144595.34600000002
-20,MAG,Haas F1 Team,14,5.0,,+1 Lap,0.0,149595.34600000002
-63,RUS,Williams,15,19.0,,+1 Lap,0.0,154595.34600000002
-18,STR,Racing Point,16,17.0,,+1 Lap,0.0,159595.34600000002
-7,RAI,Alfa Romeo Racing,17,14.0,,+1 Lap,0.0,164595.34600000002
-88,KUB,Williams,18,20.0,,+1 Lap,0.0,169595.34600000002
-99,GIO,Alfa Romeo Racing,19,18.0,,+2 Laps,0.0,254190.692
-16,LEC,Ferrari,R,15.0,,Collision,0.0,238786.03800000003
-44,HAM,Mercedes,1,2.0,0 days 01:29:07.084000,Finished,25.0,0.0
-5,VET,Ferrari,2,1.0,0 days 00:00:03.658000,Finished,18.0,3658.0
-16,LEC,Ferrari,3,3.0,0 days 00:00:04.696000,Finished,15.0,4696.0
-77,BOT,Mercedes,4,6.0,0 days 00:00:51.043000,Finished,13.0,51043.0
-33,VER,Red Bull Racing,5,9.0,0 days 00:00:57.655000,Finished,10.0,57655.0
-3,RIC,Renault,6,4.0,,+1 Lap,8.0,106386.914
-27,HUL,Renault,7,7.0,,+1 Lap,6.0,111386.914
-10,GAS,Red Bull Racing,8,5.0,,+1 Lap,4.0,116386.914
-18,STR,Racing Point,9,17.0,,+1 Lap,2.0,121386.914
-26,KVY,Toro Rosso,10,10.0,,+1 Lap,1.0,126386.914
-55,SAI,McLaren,11,11.0,,+1 Lap,0.0,131386.914
-11,PER,Racing Point,12,15.0,,+1 Lap,0.0,136386.914
-99,GIO,Alfa Romeo Racing,13,12.0,,+1 Lap,0.0,141386.914
-8,GRO,Haas F1 Team,14,14.0,,+1 Lap,0.0,146386.914
-7,RAI,Alfa Romeo Racing,15,16.0,,+1 Lap,0.0,151386.914
-63,RUS,Williams,16,18.0,,+2 Laps,0.0,232773.828
-20,MAG,Haas F1 Team,17,0.0,,+2 Laps,0.0,237773.828
-88,KUB,Williams,18,19.0,,+3 Laps,0.0,319160.742
-23,ALB,Toro Rosso,R,13.0,,Collision damage,0.0,198605.9764
-4,NOR,McLaren,R,8.0,,Suspension,0.0,122219.06240000001
-44,HAM,Mercedes,1,1.0,0 days 01:24:31.198000,Finished,25.0,0.0
-77,BOT,Mercedes,2,2.0,0 days 00:00:18.056000,Finished,18.0,18056.0
-16,LEC,Ferrari,3,3.0,0 days 00:00:18.985000,Finished,15.0,18985.0
-33,VER,Red Bull Racing,4,4.0,0 days 00:00:34.905000,Finished,12.0,34905.0
-5,VET,Ferrari,5,7.0,0 days 00:01:02.796000,Finished,11.0,62796.0
-55,SAI,McLaren,6,6.0,0 days 00:01:35.462000,Finished,8.0,95462.0
-7,RAI,Alfa Romeo Racing,7,12.0,,+1 Lap,6.0,130682.981
-27,HUL,Renault,8,13.0,,+1 Lap,4.0,135682.981
-4,NOR,McLaren,9,5.0,,+1 Lap,2.0,140682.981
-10,GAS,Red Bull Racing,10,9.0,,+1 Lap,1.0,145682.981
-3,RIC,Renault,11,8.0,,+1 Lap,0.0,150682.981
-11,PER,Racing Point,12,14.0,,+1 Lap,0.0,155682.981
-18,STR,Racing Point,13,17.0,,+1 Lap,0.0,160682.981
-26,KVY,Toro Rosso,14,19.0,,+1 Lap,0.0,165682.981
-23,ALB,Toro Rosso,15,11.0,,+1 Lap,0.0,170682.981
-99,GIO,Alfa Romeo Racing,16,10.0,,+1 Lap,0.0,175682.981
-20,MAG,Haas F1 Team,17,15.0,,+1 Lap,0.0,180682.981
-88,KUB,Williams,18,18.0,,+2 Laps,0.0,281365.962
-63,RUS,Williams,19,20.0,,+2 Laps,0.0,286365.962
-8,GRO,Haas F1 Team,20,16.0,,Retired,0.0,306185.5392
-33,VER,Red Bull Racing,1,2.0,0 days 01:22:01.822000,Finished,26.0,0.0
-16,LEC,Ferrari,2,1.0,0 days 00:00:02.724000,Finished,18.0,2724.0
-77,BOT,Mercedes,3,3.0,0 days 00:00:18.960000,Finished,15.0,18960.0
-5,VET,Ferrari,4,9.0,0 days 00:00:19.610000,Finished,12.0,19610.0
-44,HAM,Mercedes,5,4.0,0 days 00:00:22.805000,Finished,10.0,22805.0
-4,NOR,McLaren,6,5.0,,+1 Lap,8.0,99321.436
-10,GAS,Red Bull Racing,7,8.0,,+1 Lap,6.0,104321.436
-55,SAI,McLaren,8,19.0,,+1 Lap,4.0,109321.436
-7,RAI,Alfa Romeo Racing,9,6.0,,+1 Lap,2.0,114321.436
-99,GIO,Alfa Romeo Racing,10,7.0,,+1 Lap,1.0,119321.436
-11,PER,Racing Point,11,13.0,,+1 Lap,0.0,124321.436
-3,RIC,Renault,12,12.0,,+1 Lap,0.0,129321.436
-27,HUL,Renault,13,15.0,,+1 Lap,0.0,134321.436
-18,STR,Racing Point,14,14.0,,+1 Lap,0.0,139321.436
-23,ALB,Toro Rosso,15,18.0,,+1 Lap,0.0,144321.436
-8,GRO,Haas F1 Team,16,11.0,,+1 Lap,0.0,149321.436
-26,KVY,Toro Rosso,17,16.0,,+1 Lap,0.0,154321.436
-63,RUS,Williams,18,0.0,,+2 Laps,0.0,228642.872
-20,MAG,Haas F1 Team,19,10.0,,+2 Laps,0.0,233642.872
-88,KUB,Williams,20,17.0,,+3 Laps,0.0,307964.308
-44,HAM,Mercedes,1,2.0,0 days 01:21:08.452000,Finished,26.0,0.0
-77,BOT,Mercedes,2,1.0,0 days 00:00:24.928000,Finished,18.0,24928.0
-16,LEC,Ferrari,3,3.0,0 days 00:00:30.117000,Finished,15.0,30117.0
-10,GAS,Red Bull Racing,4,5.0,0 days 00:00:34.692000,Finished,12.0,34692.0
-33,VER,Red Bull Racing,5,4.0,0 days 00:00:39.458000,Finished,10.0,39458.0
-55,SAI,McLaren,6,13.0,0 days 00:00:53.639000,Finished,8.0,53639.0
-3,RIC,Renault,7,7.0,0 days 00:00:54.401000,Finished,6.0,54401.0
-7,RAI,Alfa Romeo Racing,8,12.0,0 days 00:01:05.540000,Finished,4.0,65540.0
-26,KVY,Toro Rosso,9,17.0,0 days 00:01:06.720000,Finished,2.0,66720.0
-27,HUL,Renault,10,10.0,0 days 00:01:12.733000,Finished,1.0,72733.0
-4,NOR,McLaren,11,8.0,0 days 00:01:14.281000,Finished,0.0,74281.0
-23,ALB,Toro Rosso,12,9.0,0 days 00:01:15.617000,Finished,0.0,75617.0
-18,STR,Racing Point,13,18.0,0 days 00:01:21.086000,Finished,0.0,81086.0
-63,RUS,Williams,14,19.0,,+1 Lap,0.0,163624.076
-88,KUB,Williams,15,20.0,,+1 Lap,0.0,168624.076
-5,VET,Ferrari,16,6.0,,+1 Lap,0.0,173624.076
-11,PER,Racing Point,17,15.0,,+1 Lap,0.0,178624.076
-99,GIO,Alfa Romeo Racing,R,11.0,,Spun off,0.0,205972.9672
-8,GRO,Haas F1 Team,R,14.0,,Collision,0.0,262147.4128
-20,MAG,Haas F1 Team,R,16.0,,Collision,0.0,299597.0432
+DriverNumber,Abbreviation,TeamName,ClassifiedPosition,GridPosition,Time,Status,Points,GapToLeaderMs,Year,GrandPrix
+77,BOT,Mercedes,1,2.0,0 days 01:25:27.325000,Finished,26.0,0.0,2019,Australian Grand Prix
+44,HAM,Mercedes,2,1.0,0 days 00:00:20.886000,Finished,18.0,20886.0,2019,Australian Grand Prix
+33,VER,Red Bull Racing,3,4.0,0 days 00:00:22.520000,Finished,15.0,22520.0,2019,Australian Grand Prix
+5,VET,Ferrari,4,3.0,0 days 00:00:57.109000,Finished,12.0,57109.0,2019,Australian Grand Prix
+16,LEC,Ferrari,5,5.0,0 days 00:00:58.203000,Finished,10.0,58203.0,2019,Australian Grand Prix
+20,MAG,Haas F1 Team,6,7.0,0 days 00:01:27.156000,Finished,8.0,87156.0,2019,Australian Grand Prix
+27,HUL,Renault,7,11.0,,+1 Lap,6.0,123402.155,2019,Australian Grand Prix
+7,RAI,Alfa Romeo Racing,8,9.0,,+1 Lap,4.0,128402.155,2019,Australian Grand Prix
+18,STR,Racing Point,9,16.0,,+1 Lap,2.0,133402.155,2019,Australian Grand Prix
+26,KVY,Toro Rosso,10,15.0,,+1 Lap,1.0,138402.155,2019,Australian Grand Prix
+10,GAS,Red Bull Racing,11,17.0,,+1 Lap,0.0,143402.155,2019,Australian Grand Prix
+4,NOR,McLaren,12,8.0,,+1 Lap,0.0,148402.155,2019,Australian Grand Prix
+11,PER,Racing Point,13,10.0,,+1 Lap,0.0,153402.155,2019,Australian Grand Prix
+23,ALB,Toro Rosso,14,13.0,,+1 Lap,0.0,158402.155,2019,Australian Grand Prix
+99,GIO,Alfa Romeo Racing,15,14.0,,+1 Lap,0.0,163402.155,2019,Australian Grand Prix
+63,RUS,Williams,16,19.0,,+2 Laps,0.0,256804.31,2019,Australian Grand Prix
+88,KUB,Williams,17,20.0,,+3 Laps,0.0,350206.46499999997,2019,Australian Grand Prix
+8,GRO,Haas F1 Team,R,6.0,,Wheel,0.0,106082.58599999998,2019,Australian Grand Prix
+3,RIC,Renault,R,12.0,,Damage,0.0,212165.17199999996,2019,Australian Grand Prix
+55,SAI,McLaren,R,18.0,,Engine,0.0,318247.75800000003,2019,Australian Grand Prix
+44,HAM,Mercedes,1,3.0,0 days 01:34:21.295000,Finished,25.0,0.0,2019,Bahrain Grand Prix
+77,BOT,Mercedes,2,4.0,0 days 00:00:02.980000,Finished,18.0,2980.0,2019,Bahrain Grand Prix
+16,LEC,Ferrari,3,1.0,0 days 00:00:06.131000,Finished,16.0,6131.0,2019,Bahrain Grand Prix
+33,VER,Red Bull Racing,4,5.0,0 days 00:00:06.408000,Finished,12.0,6408.0,2019,Bahrain Grand Prix
+5,VET,Ferrari,5,2.0,0 days 00:00:36.068000,Finished,10.0,36068.0,2019,Bahrain Grand Prix
+4,NOR,McLaren,6,9.0,0 days 00:00:45.754000,Finished,8.0,45754.0,2019,Bahrain Grand Prix
+7,RAI,Alfa Romeo Racing,7,8.0,0 days 00:00:47.470000,Finished,6.0,47470.0,2019,Bahrain Grand Prix
+10,GAS,Red Bull Racing,8,13.0,0 days 00:00:58.094000,Finished,4.0,58094.0,2019,Bahrain Grand Prix
+23,ALB,Toro Rosso,9,12.0,0 days 00:01:02.697000,Finished,2.0,62697.0,2019,Bahrain Grand Prix
+11,PER,Racing Point,10,14.0,0 days 00:01:03.696000,Finished,1.0,63696.0,2019,Bahrain Grand Prix
+99,GIO,Alfa Romeo Racing,11,16.0,0 days 00:01:04.599000,Finished,0.0,64599.00000000001,2019,Bahrain Grand Prix
+26,KVY,Toro Rosso,12,15.0,,+1 Lap,0.0,159320.964,2019,Bahrain Grand Prix
+20,MAG,Haas F1 Team,13,6.0,,+1 Lap,0.0,164320.964,2019,Bahrain Grand Prix
+18,STR,Racing Point,14,18.0,,+1 Lap,0.0,169320.964,2019,Bahrain Grand Prix
+63,RUS,Williams,15,19.0,,+1 Lap,0.0,174320.964,2019,Bahrain Grand Prix
+88,KUB,Williams,16,20.0,,+2 Laps,0.0,278641.928,2019,Bahrain Grand Prix
+27,HUL,Renault,R,17.0,,Engine,0.0,337691.27760000003,2019,Bahrain Grand Prix
+3,RIC,Renault,R,10.0,,Out of fuel,0.0,198641.928,2019,Bahrain Grand Prix
+55,SAI,McLaren,R,7.0,,Collision damage,0.0,139049.34960000002,2019,Bahrain Grand Prix
+8,GRO,Haas F1 Team,R,11.0,,Retired,0.0,218506.1208,2019,Bahrain Grand Prix
+44,HAM,Mercedes,1,2.0,0 days 01:32:06.350000,Finished,25.0,0.0,2019,Chinese Grand Prix
+77,BOT,Mercedes,2,1.0,0 days 00:00:06.552000,Finished,18.0,6552.0,2019,Chinese Grand Prix
+5,VET,Ferrari,3,3.0,0 days 00:00:13.774000,Finished,15.0,13774.0,2019,Chinese Grand Prix
+33,VER,Red Bull Racing,4,5.0,0 days 00:00:27.627000,Finished,12.0,27627.0,2019,Chinese Grand Prix
+16,LEC,Ferrari,5,4.0,0 days 00:00:31.276000,Finished,10.0,31276.0,2019,Chinese Grand Prix
+10,GAS,Red Bull Racing,6,6.0,0 days 00:01:29.307000,Finished,9.0,89307.0,2019,Chinese Grand Prix
+3,RIC,Renault,7,7.0,,+1 Lap,6.0,133684.821,2019,Chinese Grand Prix
+11,PER,Racing Point,8,12.0,,+1 Lap,4.0,138684.821,2019,Chinese Grand Prix
+7,RAI,Alfa Romeo Racing,9,13.0,,+1 Lap,2.0,143684.821,2019,Chinese Grand Prix
+23,ALB,Toro Rosso,10,0.0,,+1 Lap,1.0,148684.821,2019,Chinese Grand Prix
+8,GRO,Haas F1 Team,11,10.0,,+1 Lap,0.0,153684.821,2019,Chinese Grand Prix
+18,STR,Racing Point,12,16.0,,+1 Lap,0.0,158684.821,2019,Chinese Grand Prix
+20,MAG,Haas F1 Team,13,9.0,,+1 Lap,0.0,163684.821,2019,Chinese Grand Prix
+55,SAI,McLaren,14,14.0,,+1 Lap,0.0,168684.821,2019,Chinese Grand Prix
+99,GIO,Alfa Romeo Racing,15,19.0,,+1 Lap,0.0,173684.821,2019,Chinese Grand Prix
+63,RUS,Williams,16,17.0,,+2 Laps,0.0,277369.642,2019,Chinese Grand Prix
+88,KUB,Williams,17,18.0,,+2 Laps,0.0,282369.642,2019,Chinese Grand Prix
+4,NOR,McLaren,18,15.0,,Collision,0.0,296054.463,2019,Chinese Grand Prix
+26,KVY,Toro Rosso,R,11.0,,Collision,0.0,217106.60619999998,2019,Chinese Grand Prix
+27,HUL,Renault,R,8.0,,Power Unit,0.0,157895.7136,2019,Chinese Grand Prix
+77,BOT,Mercedes,1,1.0,0 days 01:31:52.942000,Finished,25.0,0.0,2019,Azerbaijan Grand Prix
+44,HAM,Mercedes,2,2.0,0 days 00:00:01.524000,Finished,18.0,1524.0,2019,Azerbaijan Grand Prix
+5,VET,Ferrari,3,3.0,0 days 00:00:11.739000,Finished,15.0,11739.0,2019,Azerbaijan Grand Prix
+33,VER,Red Bull Racing,4,4.0,0 days 00:00:17.493000,Finished,12.0,17493.0,2019,Azerbaijan Grand Prix
+16,LEC,Ferrari,5,8.0,0 days 00:01:09.107000,Finished,11.0,69107.0,2019,Azerbaijan Grand Prix
+11,PER,Racing Point,6,5.0,0 days 00:01:16.416000,Finished,8.0,76416.0,2019,Azerbaijan Grand Prix
+55,SAI,McLaren,7,9.0,0 days 00:01:23.826000,Finished,6.0,83826.0,2019,Azerbaijan Grand Prix
+4,NOR,McLaren,8,7.0,0 days 00:01:40.268000,Finished,4.0,100268.0,2019,Azerbaijan Grand Prix
+18,STR,Racing Point,9,13.0,0 days 00:01:43.816000,Finished,2.0,103816.0,2019,Azerbaijan Grand Prix
+7,RAI,Alfa Romeo Racing,10,0.0,,+1 Lap,1.0,158096.901,2019,Azerbaijan Grand Prix
+23,ALB,Toro Rosso,11,11.0,,+1 Lap,0.0,163096.901,2019,Azerbaijan Grand Prix
+99,GIO,Alfa Romeo Racing,12,17.0,,+1 Lap,0.0,168096.901,2019,Azerbaijan Grand Prix
+20,MAG,Haas F1 Team,13,12.0,,+1 Lap,0.0,173096.901,2019,Azerbaijan Grand Prix
+27,HUL,Renault,14,15.0,,+1 Lap,0.0,178096.901,2019,Azerbaijan Grand Prix
+63,RUS,Williams,15,16.0,,+2 Laps,0.0,291193.802,2019,Azerbaijan Grand Prix
+88,KUB,Williams,16,0.0,,+2 Laps,0.0,296193.802,2019,Azerbaijan Grand Prix
+10,GAS,Red Bull Racing,R,0.0,,Transmission,0.0,0.0,2019,Azerbaijan Grand Prix
+8,GRO,Haas F1 Team,R,14.0,,Brakes,0.0,302671.3228,2019,Azerbaijan Grand Prix
+26,KVY,Toro Rosso,R,6.0,,Collision,0.0,129716.2812,2019,Azerbaijan Grand Prix
+3,RIC,Renault,R,10.0,,Collision,0.0,216193.802,2019,Azerbaijan Grand Prix
+44,HAM,Mercedes,1,2.0,0 days 01:35:50.443000,Finished,26.0,0.0,2019,Spanish Grand Prix
+77,BOT,Mercedes,2,1.0,0 days 00:00:04.074000,Finished,18.0,4074.0,2019,Spanish Grand Prix
+33,VER,Red Bull Racing,3,4.0,0 days 00:00:07.679000,Finished,15.0,7679.0,2019,Spanish Grand Prix
+5,VET,Ferrari,4,3.0,0 days 00:00:09.167000,Finished,12.0,9167.0,2019,Spanish Grand Prix
+16,LEC,Ferrari,5,5.0,0 days 00:00:13.361000,Finished,10.0,13361.0,2019,Spanish Grand Prix
+10,GAS,Red Bull Racing,6,6.0,0 days 00:00:19.576000,Finished,8.0,19576.0,2019,Spanish Grand Prix
+20,MAG,Haas F1 Team,7,8.0,0 days 00:00:28.159000,Finished,6.0,28159.0,2019,Spanish Grand Prix
+55,SAI,McLaren,8,12.0,0 days 00:00:32.342000,Finished,4.0,32342.0,2019,Spanish Grand Prix
+26,KVY,Toro Rosso,9,9.0,0 days 00:00:33.056000,Finished,2.0,33056.0,2019,Spanish Grand Prix
+8,GRO,Haas F1 Team,10,7.0,0 days 00:00:34.641000,Finished,1.0,34641.0,2019,Spanish Grand Prix
+23,ALB,Toro Rosso,11,11.0,0 days 00:00:35.445000,Finished,0.0,35445.0,2019,Spanish Grand Prix
+3,RIC,Renault,12,13.0,0 days 00:00:36.758000,Finished,0.0,36758.0,2019,Spanish Grand Prix
+27,HUL,Renault,13,0.0,0 days 00:00:39.241000,Finished,0.0,39241.0,2019,Spanish Grand Prix
+7,RAI,Alfa Romeo Racing,14,14.0,0 days 00:00:41.803000,Finished,0.0,41803.0,2019,Spanish Grand Prix
+11,PER,Racing Point,15,15.0,0 days 00:00:46.877000,Finished,0.0,46877.0,2019,Spanish Grand Prix
+99,GIO,Alfa Romeo Racing,16,18.0,0 days 00:00:47.691000,Finished,0.0,47691.0,2019,Spanish Grand Prix
+63,RUS,Williams,17,19.0,,+1 Lap,0.0,172127.924,2019,Spanish Grand Prix
+88,KUB,Williams,18,17.0,,+1 Lap,0.0,177127.924,2019,Spanish Grand Prix
+18,STR,Racing Point,R,16.0,,Collision,0.0,278809.3568,2019,Spanish Grand Prix
+4,NOR,McLaren,R,10.0,,Collision,0.0,174255.848,2019,Spanish Grand Prix
+44,HAM,Mercedes,1,1.0,0 days 01:43:28.437000,Finished,25.0,0.0,2019,Monaco Grand Prix
+5,VET,Ferrari,2,4.0,0 days 00:00:02.602000,Finished,18.0,2602.0,2019,Monaco Grand Prix
+77,BOT,Mercedes,3,2.0,0 days 00:00:03.162000,Finished,15.0,3162.0,2019,Monaco Grand Prix
+33,VER,Red Bull Racing,4,3.0,0 days 00:00:05.537000,Finished,12.0,5537.0,2019,Monaco Grand Prix
+10,GAS,Red Bull Racing,5,8.0,0 days 00:00:09.946000,Finished,11.0,9946.0,2019,Monaco Grand Prix
+55,SAI,McLaren,6,9.0,0 days 00:00:53.454000,Finished,8.0,53454.0,2019,Monaco Grand Prix
+26,KVY,Toro Rosso,7,7.0,0 days 00:00:54.574000,Finished,6.0,54574.0,2019,Monaco Grand Prix
+23,ALB,Toro Rosso,8,10.0,0 days 00:00:55.200000,Finished,4.0,55200.0,2019,Monaco Grand Prix
+3,RIC,Renault,9,6.0,0 days 00:01:00.894000,Finished,2.0,60894.0,2019,Monaco Grand Prix
+8,GRO,Haas F1 Team,10,13.0,0 days 00:01:01.034000,Finished,1.0,61034.0,2019,Monaco Grand Prix
+4,NOR,McLaren,11,12.0,0 days 00:01:06.801000,Finished,0.0,66801.0,2019,Monaco Grand Prix
+11,PER,Racing Point,12,16.0,,+1 Lap,0.0,139595.34600000002,2019,Monaco Grand Prix
+27,HUL,Renault,13,11.0,,+1 Lap,0.0,144595.34600000002,2019,Monaco Grand Prix
+20,MAG,Haas F1 Team,14,5.0,,+1 Lap,0.0,149595.34600000002,2019,Monaco Grand Prix
+63,RUS,Williams,15,19.0,,+1 Lap,0.0,154595.34600000002,2019,Monaco Grand Prix
+18,STR,Racing Point,16,17.0,,+1 Lap,0.0,159595.34600000002,2019,Monaco Grand Prix
+7,RAI,Alfa Romeo Racing,17,14.0,,+1 Lap,0.0,164595.34600000002,2019,Monaco Grand Prix
+88,KUB,Williams,18,20.0,,+1 Lap,0.0,169595.34600000002,2019,Monaco Grand Prix
+99,GIO,Alfa Romeo Racing,19,18.0,,+2 Laps,0.0,254190.692,2019,Monaco Grand Prix
+16,LEC,Ferrari,R,15.0,,Collision,0.0,238786.03800000003,2019,Monaco Grand Prix
+44,HAM,Mercedes,1,2.0,0 days 01:29:07.084000,Finished,25.0,0.0,2019,Canadian Grand Prix
+5,VET,Ferrari,2,1.0,0 days 00:00:03.658000,Finished,18.0,3658.0,2019,Canadian Grand Prix
+16,LEC,Ferrari,3,3.0,0 days 00:00:04.696000,Finished,15.0,4696.0,2019,Canadian Grand Prix
+77,BOT,Mercedes,4,6.0,0 days 00:00:51.043000,Finished,13.0,51043.0,2019,Canadian Grand Prix
+33,VER,Red Bull Racing,5,9.0,0 days 00:00:57.655000,Finished,10.0,57655.0,2019,Canadian Grand Prix
+3,RIC,Renault,6,4.0,,+1 Lap,8.0,106386.914,2019,Canadian Grand Prix
+27,HUL,Renault,7,7.0,,+1 Lap,6.0,111386.914,2019,Canadian Grand Prix
+10,GAS,Red Bull Racing,8,5.0,,+1 Lap,4.0,116386.914,2019,Canadian Grand Prix
+18,STR,Racing Point,9,17.0,,+1 Lap,2.0,121386.914,2019,Canadian Grand Prix
+26,KVY,Toro Rosso,10,10.0,,+1 Lap,1.0,126386.914,2019,Canadian Grand Prix
+55,SAI,McLaren,11,11.0,,+1 Lap,0.0,131386.914,2019,Canadian Grand Prix
+11,PER,Racing Point,12,15.0,,+1 Lap,0.0,136386.914,2019,Canadian Grand Prix
+99,GIO,Alfa Romeo Racing,13,12.0,,+1 Lap,0.0,141386.914,2019,Canadian Grand Prix
+8,GRO,Haas F1 Team,14,14.0,,+1 Lap,0.0,146386.914,2019,Canadian Grand Prix
+7,RAI,Alfa Romeo Racing,15,16.0,,+1 Lap,0.0,151386.914,2019,Canadian Grand Prix
+63,RUS,Williams,16,18.0,,+2 Laps,0.0,232773.828,2019,Canadian Grand Prix
+20,MAG,Haas F1 Team,17,0.0,,+2 Laps,0.0,237773.828,2019,Canadian Grand Prix
+88,KUB,Williams,18,19.0,,+3 Laps,0.0,319160.742,2019,Canadian Grand Prix
+23,ALB,Toro Rosso,R,13.0,,Collision damage,0.0,198605.9764,2019,Canadian Grand Prix
+4,NOR,McLaren,R,8.0,,Suspension,0.0,122219.06240000001,2019,Canadian Grand Prix
+44,HAM,Mercedes,1,1.0,0 days 01:24:31.198000,Finished,25.0,0.0,2019,French Grand Prix
+77,BOT,Mercedes,2,2.0,0 days 00:00:18.056000,Finished,18.0,18056.0,2019,French Grand Prix
+16,LEC,Ferrari,3,3.0,0 days 00:00:18.985000,Finished,15.0,18985.0,2019,French Grand Prix
+33,VER,Red Bull Racing,4,4.0,0 days 00:00:34.905000,Finished,12.0,34905.0,2019,French Grand Prix
+5,VET,Ferrari,5,7.0,0 days 00:01:02.796000,Finished,11.0,62796.0,2019,French Grand Prix
+55,SAI,McLaren,6,6.0,0 days 00:01:35.462000,Finished,8.0,95462.0,2019,French Grand Prix
+7,RAI,Alfa Romeo Racing,7,12.0,,+1 Lap,6.0,130682.981,2019,French Grand Prix
+27,HUL,Renault,8,13.0,,+1 Lap,4.0,135682.981,2019,French Grand Prix
+4,NOR,McLaren,9,5.0,,+1 Lap,2.0,140682.981,2019,French Grand Prix
+10,GAS,Red Bull Racing,10,9.0,,+1 Lap,1.0,145682.981,2019,French Grand Prix
+3,RIC,Renault,11,8.0,,+1 Lap,0.0,150682.981,2019,French Grand Prix
+11,PER,Racing Point,12,14.0,,+1 Lap,0.0,155682.981,2019,French Grand Prix
+18,STR,Racing Point,13,17.0,,+1 Lap,0.0,160682.981,2019,French Grand Prix
+26,KVY,Toro Rosso,14,19.0,,+1 Lap,0.0,165682.981,2019,French Grand Prix
+23,ALB,Toro Rosso,15,11.0,,+1 Lap,0.0,170682.981,2019,French Grand Prix
+99,GIO,Alfa Romeo Racing,16,10.0,,+1 Lap,0.0,175682.981,2019,French Grand Prix
+20,MAG,Haas F1 Team,17,15.0,,+1 Lap,0.0,180682.981,2019,French Grand Prix
+88,KUB,Williams,18,18.0,,+2 Laps,0.0,281365.962,2019,French Grand Prix
+63,RUS,Williams,19,20.0,,+2 Laps,0.0,286365.962,2019,French Grand Prix
+8,GRO,Haas F1 Team,20,16.0,,Retired,0.0,306185.5392,2019,French Grand Prix
+33,VER,Red Bull Racing,1,2.0,0 days 01:22:01.822000,Finished,26.0,0.0,2019,Austrian Grand Prix
+16,LEC,Ferrari,2,1.0,0 days 00:00:02.724000,Finished,18.0,2724.0,2019,Austrian Grand Prix
+77,BOT,Mercedes,3,3.0,0 days 00:00:18.960000,Finished,15.0,18960.0,2019,Austrian Grand Prix
+5,VET,Ferrari,4,9.0,0 days 00:00:19.610000,Finished,12.0,19610.0,2019,Austrian Grand Prix
+44,HAM,Mercedes,5,4.0,0 days 00:00:22.805000,Finished,10.0,22805.0,2019,Austrian Grand Prix
+4,NOR,McLaren,6,5.0,,+1 Lap,8.0,99321.436,2019,Austrian Grand Prix
+10,GAS,Red Bull Racing,7,8.0,,+1 Lap,6.0,104321.436,2019,Austrian Grand Prix
+55,SAI,McLaren,8,19.0,,+1 Lap,4.0,109321.436,2019,Austrian Grand Prix
+7,RAI,Alfa Romeo Racing,9,6.0,,+1 Lap,2.0,114321.436,2019,Austrian Grand Prix
+99,GIO,Alfa Romeo Racing,10,7.0,,+1 Lap,1.0,119321.436,2019,Austrian Grand Prix
+11,PER,Racing Point,11,13.0,,+1 Lap,0.0,124321.436,2019,Austrian Grand Prix
+3,RIC,Renault,12,12.0,,+1 Lap,0.0,129321.436,2019,Austrian Grand Prix
+27,HUL,Renault,13,15.0,,+1 Lap,0.0,134321.436,2019,Austrian Grand Prix
+18,STR,Racing Point,14,14.0,,+1 Lap,0.0,139321.436,2019,Austrian Grand Prix
+23,ALB,Toro Rosso,15,18.0,,+1 Lap,0.0,144321.436,2019,Austrian Grand Prix
+8,GRO,Haas F1 Team,16,11.0,,+1 Lap,0.0,149321.436,2019,Austrian Grand Prix
+26,KVY,Toro Rosso,17,16.0,,+1 Lap,0.0,154321.436,2019,Austrian Grand Prix
+63,RUS,Williams,18,0.0,,+2 Laps,0.0,228642.872,2019,Austrian Grand Prix
+20,MAG,Haas F1 Team,19,10.0,,+2 Laps,0.0,233642.872,2019,Austrian Grand Prix
+88,KUB,Williams,20,17.0,,+3 Laps,0.0,307964.308,2019,Austrian Grand Prix
+44,HAM,Mercedes,1,2.0,0 days 01:21:08.452000,Finished,26.0,0.0,2019,British Grand Prix
+77,BOT,Mercedes,2,1.0,0 days 00:00:24.928000,Finished,18.0,24928.0,2019,British Grand Prix
+16,LEC,Ferrari,3,3.0,0 days 00:00:30.117000,Finished,15.0,30117.0,2019,British Grand Prix
+10,GAS,Red Bull Racing,4,5.0,0 days 00:00:34.692000,Finished,12.0,34692.0,2019,British Grand Prix
+33,VER,Red Bull Racing,5,4.0,0 days 00:00:39.458000,Finished,10.0,39458.0,2019,British Grand Prix
+55,SAI,McLaren,6,13.0,0 days 00:00:53.639000,Finished,8.0,53639.0,2019,British Grand Prix
+3,RIC,Renault,7,7.0,0 days 00:00:54.401000,Finished,6.0,54401.0,2019,British Grand Prix
+7,RAI,Alfa Romeo Racing,8,12.0,0 days 00:01:05.540000,Finished,4.0,65540.0,2019,British Grand Prix
+26,KVY,Toro Rosso,9,17.0,0 days 00:01:06.720000,Finished,2.0,66720.0,2019,British Grand Prix
+27,HUL,Renault,10,10.0,0 days 00:01:12.733000,Finished,1.0,72733.0,2019,British Grand Prix
+4,NOR,McLaren,11,8.0,0 days 00:01:14.281000,Finished,0.0,74281.0,2019,British Grand Prix
+23,ALB,Toro Rosso,12,9.0,0 days 00:01:15.617000,Finished,0.0,75617.0,2019,British Grand Prix
+18,STR,Racing Point,13,18.0,0 days 00:01:21.086000,Finished,0.0,81086.0,2019,British Grand Prix
+63,RUS,Williams,14,19.0,,+1 Lap,0.0,163624.076,2019,British Grand Prix
+88,KUB,Williams,15,20.0,,+1 Lap,0.0,168624.076,2019,British Grand Prix
+5,VET,Ferrari,16,6.0,,+1 Lap,0.0,173624.076,2019,British Grand Prix
+11,PER,Racing Point,17,15.0,,+1 Lap,0.0,178624.076,2019,British Grand Prix
+99,GIO,Alfa Romeo Racing,R,11.0,,Spun off,0.0,205972.9672,2019,British Grand Prix
+8,GRO,Haas F1 Team,R,14.0,,Collision,0.0,262147.4128,2019,British Grand Prix
+20,MAG,Haas F1 Team,R,16.0,,Collision,0.0,299597.0432,2019,British Grand Prix

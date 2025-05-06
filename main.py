@@ -127,15 +127,15 @@ for session in fastf1_sessions['Race'][:10]:
             print(f"No leader found for session {year} {grand_prix}. Skipping GapToLeader calculation.")
             results_df['GapToLeaderMs'] = np.nan
 
-            # Sort by final position
-            # results_df = results_df.sort_values(by='GapToLeaderMs')
+        # Sort by final position
+        # results_df = results_df.sort_values(by='GapToLeaderMs')
 
-            # Display final results
-            # print("=========== Results ===========")
-            # print(results_df[['Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Status', 'Points', 'GapToLeaderMs']],"\n")
-            
-            # Append to the general results dataframe
-            results_df['Year'], results_df['GrandPrix'] = year, grand_prix
+        # Display final results
+        # print("=========== Results ===========")
+        # print(results_df[['Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Status', 'Points', 'GapToLeaderMs']],"\n")
+        
+        # Append to the general results dataframe
+        results_df['Year'], results_df['GrandPrix'] = year, grand_prix
         omni_results_df = pd.concat([omni_results_df, results_df])
     except:
         pass
@@ -219,6 +219,10 @@ print(f"Average Air Temperature: {average_air_temp:.2f} °C")
 print(f"Average Track Temperature: {average_track_temp:.2f} °C")
 print(f"Rainfall occurred in {rainfall_fraction*100:.1f}% of intervals ({int(rainfall_count)} times)\n")
 
+print("HEAD=====")
+omni_weather_df = pd.read_csv('omni_weather_summary.csv')
+print(omni_weather_df.head())
+
 print("=========== Speed Data ===========")
 print(omni_speed_df.head())
 
@@ -233,12 +237,29 @@ omni_results_df.to_csv("omni_results_data.csv", index=False)
 omni_speed_df.to_csv("omni_speed_data.csv", index=False)
 omni_corners_df.to_csv("omni_corners_data.csv", index=False)
 
-corr, p_values = spearmanr(omni_results_df)
+omni_df = omni_results_df.copy()
+
+
+# Append speed DF attributes
+omni_df = omni_df.merge(
+    omni_speed_df[["Year", "GrandPrix", "AverageSpeed"]],
+    on=["Year", "GrandPrix"],
+    how="left"
+)
+# Append weather DF attributes
+omni_df = omni_df.merge(
+    omni_speed_df[["Year", "GrandPrix", "Avg Air Temp (°C)", "Avg Track Temp (°C)", "Avg Wind Speed (m/s)", "Rainfall Fraction", "Rainfall Count"]],
+    on=["Year", "GrandPrix"],
+    how="left"
+)
+# Append corner DF attributes
+
+corr, p_values = spearmanr(omni_df)
 
 # spearmanr returns a NumPy array (corr), so convert it to a DataFrame
-corr_df = pd.DataFrame(corr, index=omni_results_df.columns, columns=omni_results_df.columns)
+corr_df = pd.DataFrame(corr, index=omni_df.columns, columns=omni_df.columns)
 
 plt.figure(figsize=(8, 6))
-sns.heatmap(corr_df, annot=True, cmap='coolwarm', center=0, square=True)
+sns.heatmap(corr_df, annot=True, cmap='Greens', center=0, square=True)
 plt.title("Results DataFrame Correlation Heatmap")
 plt.show()
