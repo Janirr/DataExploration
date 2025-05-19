@@ -13,14 +13,18 @@ omni_df = pd.read_csv("omni_results_data.csv")
 speed_df = pd.read_csv("omni_speed_data.csv")
 weather_df = pd.read_csv("omni_weather_summary.csv")
 corners_df = pd.read_csv("corner_type_summary.csv")
+quali_df = pd.read_csv("qualifying_results_cleaned_with_gaps.csv")
 
 # Merge all
 avg_speed_gap_per_race = speed_df.groupby(['Year', 'GrandPrix'])['AvgSpeedGap'].mean().reset_index()
 
 print(speed_df.columns.tolist())
-speed_df = speed_df.rename(columns={"Driver": "Abbreviation"})
 final_df = omni_df.merge(
     speed_df[["Year", "GrandPrix", "Abbreviation", "AvgSpeedGap"]],
+    on=["Year", "GrandPrix", "Abbreviation"],
+    how="left"
+).merge(
+    quali_df[["Year", "GrandPrix", "Abbreviation", "Q1_gap", "Q2_gap", "Q3_gap"]],
     on=["Year", "GrandPrix", "Abbreviation"],
     how="left"
 ).merge(
@@ -47,6 +51,7 @@ final_df["DriverEncoded"] = driver_encoder.fit_transform(final_df["Abbreviation"
 
 # Przygotuj dane treningowe
 features = [
+    'GridPosition', 'Q1_gap', 'Q2_gap', 'Q3_gap',
     'AvgSpeedGap',
     'Avg Air Temp (°C)', 'Avg Track Temp (°C)', 'Avg Wind Speed (m/s)', 'Rainfall Fraction',
     'NumFastCorners', 'NumMediumCorners', 'NumSlowCorners'
@@ -78,6 +83,3 @@ spearman_corr, _ = spearmanr(test_df['ClassifiedPosition'], test_df['PredictedRa
 
 print(f"Spearman correlation: {spearman_corr:.3f}")
 print(test_df[['Abbreviation', 'ClassifiedPosition', 'PredictedRank']])
-
-print("=========== Speed Data ===========")
-print(final_df.head(40))

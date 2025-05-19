@@ -10,7 +10,7 @@ fastf1_sessions = utils.load_fastf1_data()
 # session = fastf1_sessions['Race'][0] #2nd race from 2022-2025
 omni_weather_df, omni_results_df, omni_speed_df, omni_corners_df = pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
 
-for session in fastf1_sessions['Race'][:10]:
+for session in fastf1_sessions['Race']:
     # Session name format is as follows:
     # [YEAR] Season Round [ROUND NO]: [GRAND PRIX NAME] - [information regarding whether the session is a practice session, qualifying race or the main race itself]
 
@@ -44,6 +44,31 @@ for session in fastf1_sessions['Race'][:10]:
         weather_df['Year'], weather_df['GrandPrix'] = year, grand_prix
         # Append to the general weather dataframe
         omni_weather_df = pd.concat([omni_weather_df, weather_df])
+        
+        # Group by Year and Grand Prix, then compute the required averages
+        weather_summary_df = (
+            omni_weather_df
+            .groupby(['Year', 'GrandPrix'])
+            .agg({
+                'AirTemp': 'mean',
+                'TrackTemp': 'mean',
+                'WindSpeed': 'mean',
+                'Rainfall': ['mean', 'sum']  # mean = fraction, sum = count of True
+            })
+        )
+
+        # Flatten the MultiIndex columns
+        weather_summary_df.columns = [
+            'Avg Air Temp (°C)',
+            'Avg Track Temp (°C)',
+            'Avg Wind Speed (m/s)',
+            'Rainfall Fraction',
+            'Rainfall Count'
+        ]
+
+        # Reset index to get Year and GrandPrix as columns
+        weather_summary_df = weather_summary_df.reset_index()
+        weather_summary_df.to_csv("omni_weather_summary.csv", index=False)
     except:
         pass
 
@@ -78,6 +103,7 @@ for session in fastf1_sessions['Race'][:10]:
 
         # Append to the general speed dataframe
         speed_df['Year'], speed_df['GrandPrix'] = year, grand_prix
+        speed_df.rename(columns={"Driver": "Abbreviation"}, inplace=True)
         omni_speed_df = pd.concat([omni_speed_df, speed_df])
     except:
         pass
@@ -107,6 +133,13 @@ for session in fastf1_sessions['Race'][:10]:
     Points | float | The number of points received by each driver for their finishing result.
     """
     try:
+        # Normalize ClassifiedPosition
+        def normalize_classified_position(pos):
+            try:
+                return int(pos)
+            except ValueError:
+                return 20  # Assign 20 for special codes like R, D, E, etc.
+
         results = session.results[['DriverNumber', 'Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Time', 'Status', 'Points']]
 
         # Copy the results data
@@ -124,17 +157,12 @@ for session in fastf1_sessions['Race'][:10]:
             avg_lap_time = leader_time / laps_completed
             avg_lap_time_ms = avg_lap_time.total_seconds() * 1000
             results_df['GapToLeaderMs'] = results_df.apply(lambda row: utils.normalize_time(row, avg_lap_time_ms), axis=1)
+            results_df['GridPosition'] = results_df['GridPosition'].astype(int)
+            results_df['ClassifiedPosition'] = results_df['ClassifiedPosition'].apply(normalize_classified_position)
         else:
             print(f"No leader found for session {year} {grand_prix}. Skipping GapToLeader calculation.")
             results_df['GapToLeaderMs'] = np.nan
 
-        # Sort by final position
-        # results_df = results_df.sort_values(by='GapToLeaderMs')
-
-        # Display final results
-        # print("=========== Results ===========")
-        # print(results_df[['Abbreviation','TeamName', 'ClassifiedPosition', 'GridPosition', 'Status', 'Points', 'GapToLeaderMs']],"\n")
-        
         # Append to the general results dataframe
         results_df['Year'], results_df['GrandPrix'] = year, grand_prix
         omni_results_df = pd.concat([omni_results_df, results_df])
@@ -156,16 +184,6 @@ for session in fastf1_sessions['Race'][:10]:
         circuit_info_filtered = corners_df[['Angle', 'Distance']]
     except:
         pass
-
-    # Print the filtered information
-    # print("=========== Track data (corners) ===========")
-    # print(circuit_info_filtered)
-    # print(f"Number of corners: {circuit_info_filtered.shape[0]}")
-
-    # TODO: Combine all data frames and repeat it for all sessions
-    # GAUSS: I'm not sure what was meant by "combining all data frames",
-    #        but I have created a loop which handles extracting data from
-    #        all available sessions.
 
 # Compute global weather averages
 average_air_temp = omni_weather_df['AirTemp'].mean()
@@ -208,8 +226,6 @@ for col in ['NumSlowCorners', 'NumMediumCorners', 'NumFastCorners']:
     if col not in corner_summary_df.columns:
         corner_summary_df[col] = 0
 
-# Save to CSV
-# corner_summary_df.to_csv('corner_type_summary.csv', index=False)
 
 # Display a preview
 print(corner_summary_df.head())
@@ -224,6 +240,10 @@ print("HEAD=====")
 omni_weather_df = pd.read_csv('omni_weather_summary.csv')
 print(omni_weather_df.head())
 
+omni_quali_df = pd.read_csv('qualifying_results_cleaned_with_gaps.csv')
+print("=========== Qualifying Data ===========")
+print(omni_quali_df.head())
+
 print("=========== Speed Data ===========")
 print(omni_speed_df.head())
 
@@ -233,18 +253,22 @@ print(omni_results_df.head())
 print("=========== Corners Data ===========")
 print(omni_corners_df.head())
 
-omni_weather_df.to_csv("omni_weather_data.csv", index=False)
 omni_results_df.to_csv("omni_results_data.csv", index=False)
 omni_speed_df.to_csv("omni_speed_data.csv", index=False)
 omni_corners_df.to_csv("omni_corners_data.csv", index=False)
 
 omni_df = omni_results_df.copy()
 
+omni_df = omni_df.merge(
+    omni_quali_df[["Year", "GrandPrix", "Abbreviation", "Q1_gap", "Q2_gap", "Q3_gap"]],
+    on=["Year", "GrandPrix", "Abbreviation"],
+    how="left"
+)
 
 # Append speed DF attributes
 omni_df = omni_df.merge(
-    omni_speed_df[["Year", "GrandPrix", "AvgSpeedGap"]],
-    on=["Year", "GrandPrix"],
+    omni_speed_df[["Year", "GrandPrix", "AvgSpeedGap", "Abbreviation"]],
+    on=["Year", "GrandPrix", "Abbreviation"],
     how="left"
 )
 # Append weather DF attributes
@@ -260,12 +284,23 @@ omni_df = omni_df.merge(
     how="left"
 )
 
+omni_df = omni_df.drop(columns=["Time","Status","Year"]) # Remove DNFs
+
+columns_to_check = ['Q1_gap', 'Q2_gap', 'Q3_gap', 'AvgSpeedGap', 'NumFastCorners', 'NumMediumCorners', 'NumSlowCorners']
+omni_df = omni_df.dropna(subset=columns_to_check).reset_index(drop=True)
+
+print("Any NaNs?", omni_df.isna().any().any())
+print("Columns with NaNs:", omni_df.columns[omni_df.isna().any()])
+
+print("=========== Merged Data ===========")
+print(omni_df.head(25))
+
 corr, p_values = spearmanr(omni_df)
 
 # spearmanr returns a NumPy array (corr), so convert it to a DataFrame
 corr_df = pd.DataFrame(corr, index=omni_df.columns, columns=omni_df.columns)
 
 plt.figure(figsize=(8, 6))
-sns.heatmap(corr_df, annot=True, cmap='Greens', center=0, square=True)
+sns.heatmap(abs(corr_df), annot=True, cmap='Reds', center=0, square=True)
 plt.title("Results DataFrame Correlation Heatmap")
 plt.show()
